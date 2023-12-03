@@ -177,14 +177,14 @@ const Main = ({
           ? "Search your favorite food and get the recipe in seconds"
           : "Kerko ushqimin tuaj te preferuar dhe gjej receten ne sekonda"}
       </h2>
-      <article className="flex mb-4 w-full pl-4 justify-center mt-2">
+      <article className="flex mb-4 w-full sm:pl-4 justify-center mt-2">
         <SearchIcon
           style={`absolute mt-[8px] -translate-x-[350px] mr-4 w-[20px] text-slate-400 h-[20px]`}
         />
         <input
           placeholder="Search your favorite food..."
           type="text"
-          className="outline-none px-2 pl-10 bg-black border border-slate-600 text-neutral-400 py-1 rounded w-1/2 "
+          className="outline-none px-2 pl-10 bg-black border border-slate-600 text-neutral-400 py-1 rounded w-full sm:w-1/2 "
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
@@ -271,9 +271,9 @@ const Main = ({
                 show={isHoveredNext}
                 onMouseEnter={() => setIsHoveredNext(true)}
                 onMouseLeave={() => setIsHoveredNext(false)}
-                buttonStyle={`-rotate-90 ml-10`}
+                buttonStyle={` `}
                 onClick={() => paginate(currentPage + 1)}
-                buttonChildren={<Arrow style={`w-6 h-6 text-[#AAAAAA]`} />}
+                buttonChildren={<Arrow style={` -rotate-90 w-6 h-6 text-[#AAAAAA]`} />}
                 panelStyle={`w-[70px] font-serif  -translate-y-14 text-sm  absolute z-10`}
               >
                 <p className="bg-white  rounded px-3 py-1 translate-x-4 -translate-y-1">

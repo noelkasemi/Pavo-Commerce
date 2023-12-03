@@ -1,5 +1,4 @@
-
-import {Arrow, useState, useEffect, Tooltip, Logo, HeaderSmartphone, UsFlag, AlbFlag} from '../Partials/Imports'
+import { Arrow, useState, useEffect, Tooltip, Logo, HeaderSmartphone, UsFlag, AlbFlag } from "../Partials/Imports";
 
 export default function Header({ navigateTo, currentPage, changeLangTo }) {
   // State for tracking hover state of the tooltip
@@ -51,13 +50,7 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
       {/* Navigation */}
       <nav className="navbar  fixed-top">
         <div className="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
-          {/* Text Logo - Use this if you don't have a graphic logo */}
-          {/* <a class="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll" href="index.html">Pavo</a> */}
-          {/* Image Logo */}
-          <a
-            onClick={() => navigateTo("home")}
-            className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer"
-          >
+          <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer">
             <img src={Logo} alt="alternative" className="h-8" />
           </a>
           <button
@@ -73,14 +66,16 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
           >
             <ul className="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
               <li>
-                <a className="nav-link page-scroll active" href="#header">
+                <a
+                  onClick={() => navigateTo("home")}
+                  className=" nav-link page-scroll cursor-pointer active"
+                >
                   Home <span className="sr-only">(current)</span>
                 </a>
               </li>
               <li className="dropdown ">
                 <a
                   className="nav-link -translate-y-1 flex"
-                  href="#"
                   id="dropdown01"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -100,19 +95,19 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
                       <ul className="">
                         <li
                           onClick={() => navigateTo("articles")}
-                          className="text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
+                          className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
                         >
                           Article Details
                         </li>
                         <li
                           onClick={() => navigateTo("terms")}
-                          className="text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
+                          className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
                         >
                           Terms Conditions
                         </li>
                         <li
                           onClick={() => navigateTo("privacy")}
-                          className="text-[#808f99] hover:text-[#ff6f85] py-4 px-2"
+                          className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] py-4 px-2"
                         >
                           Privacy Policy
                         </li>
@@ -120,23 +115,12 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
                     }
                   />
                 </a>
-
-                <div className="dropdown-menu" aria-labelledby="dropdown01">
-                  <a className="dropdown-item page-scroll" href="article.html">
-                    Article Details
-                  </a>
-                  <div className="dropdown-divider" />
-                  <a className="dropdown-item page-scroll" href="terms.html">
-                    Terms Conditions
-                  </a>
-                  <div className="dropdown-divider" />
-                  <a className="dropdown-item page-scroll" href="privacy.html">
-                    Privacy Policy
-                  </a>
-                </div>
               </li>
               <li>
-                <a onClick={() => navigateTo('recepie')} className="nav-link cursor-pointer page-scroll" >
+                <a
+                  onClick={() => navigateTo("recepie")}
+                  className="nav-link cursor-pointer page-scroll"
+                >
                   Recepies
                 </a>
               </li>
@@ -161,8 +145,18 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
             >
               Sign up
             </button>
-            <img onClick={() => changeLangTo('albanian')} src={AlbFlag} alt='alb flag' className='w-5 h-5 ml-4 mr-2 cursor-pointer' />
-            <img onClick={() => changeLangTo('english')} src={UsFlag} alt='alb flag' className='w-5 h-5 cursor-pointer' />
+            <img
+              onClick={() => changeLangTo("albanian")}
+              src={AlbFlag}
+              alt="alb flag"
+              className="w-5 h-5 ml-4 mr-2 cursor-pointer"
+            />
+            <img
+              onClick={() => changeLangTo("english")}
+              src={UsFlag}
+              alt="alb flag"
+              className="w-5 h-5 cursor-pointer"
+            />
           </div>
           {/* end of navbar-collapse */}
         </div>

@@ -1016,7 +1016,6 @@ a:hover.back-to-top {
 
   /* Navigation */
   .navbar {
-    background-color: transparent;
     flex-wrap: nowrap;
     justify-content: start;
     padding-left: 0;

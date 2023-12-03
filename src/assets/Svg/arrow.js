@@ -6,7 +6,7 @@ export default function Arrow({ style }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`${style} `}
+      className={` ${style} `}
     >
       <path
         strokeLinecap="round"
