@@ -1,17 +1,24 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import Tooltip from "../../Tools/Tooltip";
-import Arrow from "../../assets/Svg/arrow";
-import InfoIcon from "../../assets/Svg/InfoIcon";
-import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/20/solid";
-import PencilIcon from "../../assets/Svg/Pencil";
-import TrashIcon from "../../assets/Svg/Trash";
-import Bookmark from "../../assets/Svg/bookmark";
-import Lock from "../../assets/Svg/Lock";
-import SearchIcon from "../../assets/Svg/SearchIcon";
+import {
+  React,
+  Dialog,
+  Transition,
+  Tooltip,
+  Arrow,
+  InfoIcon,
+  Disclosure,
+  ChevronUpIcon,
+  PencilIcon,
+  TrashIcon,
+  Bookmark,
+  Lock,
+  SearchIcon,
+  useState,
+  useEffect,
+  Fragment,
+} from "../Partials/Imports";
 
 const Main = ({
+  currentLang,
   cuisineOption,
   isClicked,
   diet,
@@ -165,26 +172,27 @@ const Main = ({
 
   return (
     <>
-              <h2 className="font-bold text-2xl text-center font-serif text-black">
-            Search your favorite food and get the recipe in seconds
-          </h2>
-              <article className="flex mb-4 w-full pl-4 justify-center mt-2">
-            <SearchIcon
-              style={`absolute mt-[8px] -translate-x-[350px] mr-4 w-[20px] text-slate-400 h-[20px]`}
-            />
-            <input
-              placeholder="Search your favorite food..."
-              type="text"
-              className="outline-none px-2 pl-10 bg-black border border-slate-600 text-neutral-400 py-1 rounded w-1/2 "
-              value={searchQuery}
-              onChange={handleSearchInputChange}
-            />
-          </article>
+      <h2 className="font-bold text-2xl text-center font-serif text-black">
+        {currentLang === "english"
+          ? "Search your favorite food and get the recipe in seconds"
+          : "Kerko ushqimin tuaj te preferuar dhe gjej receten ne sekonda"}
+      </h2>
+      <article className="flex mb-4 w-full pl-4 justify-center mt-2">
+        <SearchIcon
+          style={`absolute mt-[8px] -translate-x-[350px] mr-4 w-[20px] text-slate-400 h-[20px]`}
+        />
+        <input
+          placeholder="Search your favorite food..."
+          type="text"
+          className="outline-none px-2 pl-10 bg-black border border-slate-600 text-neutral-400 py-1 rounded w-1/2 "
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+      </article>
       {/* Checkbox section to toggle between Administrator Moderator User and Guest views */}
       <section className="flex flex-wrap space-x-8 w-full justify-center">
         <label className="">
           <input
-          
             type="radio"
             name="viewType"
             checked={isAdminView}

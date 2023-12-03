@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Switch } from "@headlessui/react";
+import { useState, Switch } from "../Page/Partials/Imports";
 
 export default function MyToggle() {
   const [enabled, setEnabled] = useState(false);

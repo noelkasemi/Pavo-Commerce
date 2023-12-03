@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import TrashIcon from "../assets/Svg/Trash";
-import PencilIcon from "../assets/Svg/Pencil";
+import {React, useState, TrashIcon, PencilIcon} from '../Page/Partials/Imports'
 
 const Table = ({ style }) => {
   const initialData = [

@@ -1,7 +1,4 @@
-import { Popover, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import Arrow from "../assets/Svg/arrow";
-import Table from "./Table";
+import { Popover, Transition, Fragment, Arrow, Table } from "../Page/Partials/Imports";
 
 export default function MyPopover(props) {
   const data = [

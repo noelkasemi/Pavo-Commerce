@@ -11,6 +11,12 @@ import Main from "./Page/RecepiePage/main";
 export default function App() {
   // State to check which page is and should be rendered
   const [currentPage, setCurrentPage] = useState("home");
+  const [currentLang, setCurrentLang] = useState('english')
+
+  //Function to change the language of the page
+  const changeLangTo = (lang) => {
+    setCurrentLang(lang)
+  }
 
   // Function to change the current page to the clicked one
   const navigateTo = (page) => {
@@ -35,7 +41,7 @@ export default function App() {
       case "contact":
         return <Form type={`contact`} />;
         case 'recepie':
-          return <Main />
+          return <Main currentLang={currentLang} />
       default:
         return <Index />;
     }
@@ -43,7 +49,7 @@ export default function App() {
 
   return (
     <div className="App  ">
-      <Header navigateTo={navigateTo} currentPage={currentPage} />
+      <Header navigateTo={navigateTo} changeLangTo={changeLangTo} currentPage={currentPage} />
        {renderPage()}
       <Footer navigateTo={navigateTo} />
     </div>

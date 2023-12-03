@@ -1,6 +1,4 @@
-import Tooltip from "./Tooltip";
-import InfoIcon from "../assets/Svg/InfoIcon";
-import { useState, useEffect } from "react";
+import {Tooltip, InfoIcon, useState, useEffect} from '../Page/Partials/Imports'
 
 export default function Form({ type, navigateTo }) {
   // State for tracking hover state of the tooltip

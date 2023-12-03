@@ -1,24 +1,7 @@
 import "../CSS/magnific-popup.css";
 import "../CSS/styles.css";
 import "../CSS/swiper.css";
-import ConclusionSmartphone from "../assets/Images/conclusion-smartphone.png";
-import Details1 from "../assets/Images/details-1.jpg";
-import Details2 from "../assets/Images/details-2.jpg";
-import Details3 from "../assets/Images/details-3.jpg";
-import Lightbox from "../assets/Images/details-lightbox.jpg";
-import Testimonial1 from "../assets/Images/testimonial-1.jpg";
-import Testimonial2 from "../assets/Images/testimonial-2.jpg";
-import Testimonial3 from "../assets/Images/testimonial-3.jpg";
-import Testimonial4 from "../assets/Images/testimonial-4.jpg";
-import Testimonial5 from "../assets/Images/testimonial-5.jpg";
-import Testimonial6 from "../assets/Images/testimonial-6.jpg";
-import FeaturesIcon1 from "../assets/Svg/features-icon-1.svg";
-import FeaturesIcon2 from "../assets/Svg/features-icon-2.svg";
-import FeaturesIcon3 from "../assets/Svg/features-icon-3.svg";
-import FeaturesIcon4 from "../assets/Svg/features-icon-4.svg";
-import FeaturesIcon5 from "../assets/Svg/features-icon-5.svg";
-import FeaturesIcon6 from "../assets/Svg/features-icon-6.svg";
-import MyDisclosure from "../Tools/Disclosure";
+import { ConclusionSmartphone, Details1,Details2,Details3,Lightbox,Testimonial1,Testimonial2,Testimonial3,Testimonial4,Testimonial5,Testimonial6,FeaturesIcon1,FeaturesIcon2,FeaturesIcon3,FeaturesIcon4,FeaturesIcon5,FeaturesIcon6,MyDisclosure,} from "./Partials/Imports";
 
 export default function Index() {
   return (

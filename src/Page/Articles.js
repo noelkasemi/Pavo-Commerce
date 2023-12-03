@@ -1,8 +1,7 @@
 import "../CSS/magnific-popup.css";
 import "../CSS/styles.css";
 import "../CSS/swiper.css";
-import ArticleDetailsLarge from "../assets/Images/article-details-large.jpg";
-import ArticleDetailsSmall from "../assets/Images/article-details-small.jpg";
+import { ArticleDetailsLarge, ArticleDetailsSmall } from "./Partials/Imports";
 
 export default function Articles() {
   return (

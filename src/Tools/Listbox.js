@@ -1,5 +1,4 @@
-import { Listbox, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import {Listbox, Transition, Fragment} from '../Page/Partials/Imports'
 
 export default function MyListbox({
   selectedValue,

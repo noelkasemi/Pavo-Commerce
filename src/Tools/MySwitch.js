@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { Switch } from "@headlessui/react";
-import Moon from "../assets/Svg/moon";
-import Sun from "../assets/Svg/Sun";
+import { useState, Switch, Moon, Sun } from "../Page/Partials/Imports";
 
 export default function MyToggle({ onClick }) {
   const [enabled, setEnabled] = useState(false);

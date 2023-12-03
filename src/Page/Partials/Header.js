@@ -1,11 +1,7 @@
-import Logo from "../../assets/Svg/logo.svg";
-import HeaderSmartphone from "../../assets/Images/header-smartphone.png";
-import Tooltip from "../../Tools/Tooltip";
-import { useState, useEffect } from "react";
-import Arrow from "../../assets/Svg/arrow";
 
+import {Arrow, useState, useEffect, Tooltip, Logo, HeaderSmartphone, UsFlag, AlbFlag} from '../Partials/Imports'
 
-export default function Header({ navigateTo, currentPage }) {
+export default function Header({ navigateTo, currentPage, changeLangTo }) {
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
 
@@ -81,9 +77,9 @@ export default function Header({ navigateTo, currentPage }) {
                   Home <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li className="dropdown">
+              <li className="dropdown ">
                 <a
-                  className="nav-link p-0 flex"
+                  className="nav-link -translate-y-1 flex"
                   href="#"
                   id="dropdown01"
                   data-toggle="dropdown"
@@ -165,6 +161,8 @@ export default function Header({ navigateTo, currentPage }) {
             >
               Sign up
             </button>
+            <img onClick={() => changeLangTo('albanian')} src={AlbFlag} alt='alb flag' className='w-5 h-5 ml-4 mr-2 cursor-pointer' />
+            <img onClick={() => changeLangTo('english')} src={UsFlag} alt='alb flag' className='w-5 h-5 cursor-pointer' />
           </div>
           {/* end of navbar-collapse */}
         </div>

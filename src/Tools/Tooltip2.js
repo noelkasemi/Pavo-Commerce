@@ -1,5 +1,5 @@
-import { Popover, Transition } from "@headlessui/react";
-import { useState } from "react";
+import { Popover, Transition, useState } from "../Page/Partials/Imports";
+
 
 export default function Tooltip2({ position = "bottom", style }) {
   const [hovered, setHovered] = useState(false);

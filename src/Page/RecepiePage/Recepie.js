@@ -1,14 +1,5 @@
 
-import React, { useState } from "react";
-import Main from "./main";
-import MyListbox from "../../Tools/Listbox";
-import Data from "../../Data/RecepieData.json";
-import SearchIcon from "../../assets/Svg/SearchIcon";
-import { Filter } from "../../assets/Svg/FilterIcon";
-import Arrow from "../../assets/Svg/arrow";
-import Tooltip from "../../Tools/Tooltip";
-import Bell from "../../assets/Svg/Bell";
-import CheckIcon from "../../assets/Svg/CheckIcon";
+import {React,  MyListbox, Data, SearchIcon, Filter, Arrow, Tooltip, Bell, CheckIcon,  useState } from "../Partials/Imports";
 
 const Recepie = () => {
   const [searchQuery, setSearchQuery] = useState("pasta");
