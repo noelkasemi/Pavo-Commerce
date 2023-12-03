@@ -4,6 +4,7 @@ import Tooltip from "../../Tools/Tooltip";
 import { useState, useEffect } from "react";
 import Arrow from "../../assets/Svg/arrow";
 
+
 export default function Header({ navigateTo, currentPage }) {
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
@@ -14,14 +15,14 @@ export default function Header({ navigateTo, currentPage }) {
     window.scrollTo(0, 0);
   }, [currentPage]); // This effect will run when currentPage changes
 
-  // Function to render the additional div if the component rendered is not one of the forms
-  const renderAdditionalDiv = () => {
+  // Function to render the additional section if the component rendered is not one of the forms
+  const renderAdditionalSection = () => {
     if (
       currentPage === "signup" ||
       currentPage === "login" ||
       currentPage === "contact"
     ) {
-      // If the current page is 'form', don't render the additional div
+      // If the current page is 'form', don't render the additional section
       return null;
     }
     // Render the additional div for other pages
@@ -52,7 +53,7 @@ export default function Header({ navigateTo, currentPage }) {
   return (
     <>
       {/* Navigation */}
-      <nav className="navbar fixed-top">
+      <nav className="navbar  fixed-top">
         <div className="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
           {/* Text Logo - Use this if you don't have a graphic logo */}
           {/* <a class="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll" href="index.html">Pavo</a> */}
@@ -78,21 +79,6 @@ export default function Header({ navigateTo, currentPage }) {
               <li>
                 <a className="nav-link page-scroll active" href="#header">
                   Home <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li>
-                <a className="nav-link page-scroll" href="#features">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a className="nav-link page-scroll" href="#details">
-                  Details
-                </a>
-              </li>
-              <li>
-                <a className="nav-link page-scroll" href="#pricing">
-                  Pricing
                 </a>
               </li>
               <li className="dropdown">
@@ -154,8 +140,8 @@ export default function Header({ navigateTo, currentPage }) {
                 </div>
               </li>
               <li>
-                <a className="nav-link page-scroll" href="#download">
-                  Download
+                <a onClick={() => navigateTo('recepie')} className="nav-link cursor-pointer page-scroll" >
+                  Recepies
                 </a>
               </li>
             </ul>
@@ -197,7 +183,7 @@ export default function Header({ navigateTo, currentPage }) {
             : "xl:pt-44 xl:pb-32 md:pt-36 py-28"
         }  text-center  lg:text-left `}
       >
-        {renderAdditionalDiv()}
+        {renderAdditionalSection()}
 
         {/* end of container */}
       </header>

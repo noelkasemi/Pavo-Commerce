@@ -1,4 +1,3 @@
-// import "../CSS/fontawesome-all.css";
 import "../CSS/magnific-popup.css";
 import "../CSS/styles.css";
 import "../CSS/swiper.css";

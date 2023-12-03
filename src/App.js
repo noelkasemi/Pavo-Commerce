@@ -6,7 +6,7 @@ import Privacy from "./Page/Privacy";
 import Terms from "./Page/Terms";
 import Articles from "./Page/Articles";
 import { useState } from "react";
-import Recepie from "./Page/RecepiePage/Recepie";
+import Main from "./Page/RecepiePage/main";
 
 export default function App() {
   // State to check which page is and should be rendered
@@ -34,6 +34,8 @@ export default function App() {
         return <Articles />;
       case "contact":
         return <Form type={`contact`} />;
+        case 'recepie':
+          return <Main />
       default:
         return <Index />;
     }
@@ -43,7 +45,6 @@ export default function App() {
     <div className="App  ">
       <Header navigateTo={navigateTo} currentPage={currentPage} />
        {renderPage()}
-      {/* <Recepie /> */}
       <Footer navigateTo={navigateTo} />
     </div>
   );

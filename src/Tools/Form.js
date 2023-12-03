@@ -15,8 +15,8 @@ export default function Form({ type, navigateTo }) {
   const [confirmationError, setConfirmationError] = useState("");
   // state for tracking form if and when its submited
   const [formSubmitted, setFormSubmitted] = useState(false);
-   // State for tracking the selected file
-   const [selectedFile, setSelectedFile] = useState(null);
+  // State for tracking the selected file
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // Handles password input and changes the state based on whats inputed
   const handlePasswordChange = (e) => {
@@ -29,12 +29,11 @@ export default function Form({ type, navigateTo }) {
     setPasswordConfirmation(newPasswordConfirmation);
   };
 
-   // Handles file selection
-   const handleFileChange = (e) => {
+  // Handles file selection
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
   };
-
 
   useEffect(() => {
     // Validates password length after form submission
@@ -42,15 +41,14 @@ export default function Form({ type, navigateTo }) {
       if (password.length < 8) {
         setPasswordError("Password must be at least 8 characters");
       } else {
-        setPasswordError("");
+        // Validates password if its the same as password confirmation
+        if (passwordConfirmation && password !== passwordConfirmation) {
+          setConfirmationError("Password confirmation does not match");
+        } else {
+          setConfirmationError("");
+        }
       }
-
-      // Validates password if its the same as password confirmation
-      if (passwordConfirmation && password !== passwordConfirmation) {
-        setConfirmationError("Password confirmation does not match");
-      } else {
-        setConfirmationError("");
-      }
+      setPasswordError("");
     }
   }, [formSubmitted, password, passwordConfirmation]);
 
@@ -221,36 +219,37 @@ export default function Form({ type, navigateTo }) {
             </article>
           )}
 
-              {/* File Input (Visible for contact form only) */}
-      {type === "contact" && (
-        <article className="mb-2">
-          <label
-            htmlFor="media"
-            className="block flex  text-sm font-semibold text-gray-800"
-          >
-            Media   <Tooltip
-                    panelStyle={`bg-black px-2 py-1 rounded absolute w-[300px] `}
-                    show={isHovered}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    buttonChildren={<InfoIcon style={`w-4 h-4 mt-[1px] ml-1`} />}
-                  >
-                    {isHovered && (
-                      <p className="text-white text-xs italic">
-                        Accepted formats: .png, .jpg, .avif, .webp, etc
-                      </p>
-                    )}
-                  </Tooltip>
-          </label>
-          <input
-            type="file"
-            id="media"
-            accept=".png, .jpg, .avif, .webp"
-            onChange={handleFileChange}
-            className="block cursor-pointer w-full mt-2 border-dashed border-2 border-gray-300 p-2 rounded-md focus:outline-none focus:border-purple-400 focus:ring focus:ring-purple-300"
-          />
-        </article>
-      )}
+          {/* File Input (Visible for contact form only) */}
+          {type === "contact" && (
+            <article className="mb-2">
+              <label
+                htmlFor="media"
+                className="block flex  text-sm font-semibold text-gray-800"
+              >
+                Media{" "}
+                <Tooltip
+                  panelStyle={`bg-black px-2 py-1 rounded absolute w-[300px] `}
+                  show={isHovered}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  buttonChildren={<InfoIcon style={`w-4 h-4 mt-[1px] ml-1`} />}
+                >
+                  {isHovered && (
+                    <p className="text-white text-xs italic">
+                      Accepted formats: .png, .jpg, .avif, .webp, etc
+                    </p>
+                  )}
+                </Tooltip>
+              </label>
+              <input
+                type="file"
+                id="media"
+                accept=".png, .jpg, .avif, .webp"
+                onChange={handleFileChange}
+                className="block cursor-pointer w-full mt-2 border-dashed border-2 border-gray-300 p-2 rounded-md focus:outline-none focus:border-purple-400 focus:ring focus:ring-purple-300"
+              />
+            </article>
+          )}
 
           {/* Forget Password Link (Visible for login form only) */}
           {type === "login" && (
