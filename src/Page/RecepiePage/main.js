@@ -163,6 +163,8 @@ const Main = ({ navigateToDetails, currentLang }) => {
     setIsGuestView(viewType === "guest");
   };
 
+  console.log(isGuestView)
+
   return (
     <>
       <h2 className="font-bold text-2xl text-center font-serif text-black">
@@ -434,7 +436,7 @@ const Main = ({ navigateToDetails, currentLang }) => {
       </div>
 
       {/* Recipe modal */}
-      {isGuestView || notAdmin ? (
+      {(isGuestView || notAdmin) && (
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
@@ -517,7 +519,7 @@ const Main = ({ navigateToDetails, currentLang }) => {
             </div>
           </Dialog>
         </Transition>
-      ) : null}
+      ) }
     </>
   );
 };

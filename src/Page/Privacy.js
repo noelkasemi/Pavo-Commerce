@@ -1,5 +1,5 @@
 import "../CSS/magnific-popup.css";
-import "../CSS/styles.css";
+// import "../CSS/styles.css";
 import "../CSS/swiper.css";
 
 export default function Privacy() {

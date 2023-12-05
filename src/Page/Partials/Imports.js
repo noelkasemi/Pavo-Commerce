@@ -44,6 +44,7 @@ import Sun from "../../assets/Svg/Sun";
 import Table from "../../Tools/Table";
 import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
+
  
 export {
   React,
@@ -96,5 +97,6 @@ export {
   Table,
   InfoIcon,
   UsFlag,
-  AlbFlag
+  AlbFlag,
+
 };

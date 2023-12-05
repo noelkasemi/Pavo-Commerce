@@ -11,41 +11,7 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
     window.scrollTo(0, 0);
   }, [currentPage]); // This effect will run when currentPage changes
 
-  // Function to render the additional section if the component rendered is not one of the forms
-  const renderAdditionalSection = () => {
-    if (
-      currentPage === "signup" ||
-      currentPage === "login" ||
-      currentPage === "contact"
-    ) {
-      // If the current page is 'form', don't render the additional section
-      return null;
-    }
-    // Render the additional div for other pages
-    return (
-      // Header section
-      <section className="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
-        <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
-          <h1 className="h1-large mb-5">Team management mobile application</h1>
-          <p className="p-large mb-8">
-            Start getting things done together with your team based on Pavo's
-            revolutionary team management features
-          </p>
-          <a className="btn-solid-lg" href="#your-link">
-            <i className="fab fa-apple" />
-            Download
-          </a>
-          <a className="btn-solid-lg secondary" href="#your-link">
-            <i className="fab fa-google-play" />
-            Download
-          </a>
-        </div>
-        <div className="xl:text-right">
-          <img className="inline" src={HeaderSmartphone} alt="alternative" />
-        </div>
-      </section>
-    );
-  };
+
   return (
     <>
       {/* Navigation */}
@@ -201,7 +167,6 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
             : "xl:pt-44 xl:pb-32 md:pt-36 py-28"
         }  text-center  lg:text-left `}
       >
-        {renderAdditionalSection()}
 
         {/* end of container */}
       </header>

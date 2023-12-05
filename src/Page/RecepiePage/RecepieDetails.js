@@ -28,7 +28,7 @@ const RecepieDetails = ({ recepie, navigateBack }) => {
           </article>
           <article>          <strong className="text-lg">Ingredients:</strong> 
           <ul className="w-[390px]  h-28 overflow-auto">
-            {recepie.recipe.ingredientLines.map(ingredient => <li>{ingredient}</li>)}
+            {recepie.recipe.ingredientLines.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
           </ul></article>
 
         </article>

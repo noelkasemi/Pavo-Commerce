@@ -1,7 +1,8 @@
+// Import React components
 import Index from "./Page/index";
 import Form from "./Tools/Form";
 import Header from "./Page/Partials/Header";
-import Footer from "./Page/Partials/Foter";
+import Footer from "./Page/Partials/Footer";
 import Privacy from "./Page/Privacy";
 import Terms from "./Page/Terms";
 import Articles from "./Page/Articles";
@@ -16,7 +17,7 @@ export default function App() {
   const [showRecipePage, setShowRecipePage] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  //Function to change the language of the page
+  // Function to change the language of the page
   const changeLangTo = (lang) => {
     setCurrentLang(lang);
   };
@@ -33,49 +34,42 @@ export default function App() {
     setShowRecipePage(true);
   };
 
-  // Switch Case to render the page based on what the user clicks
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <Index />;
-      case "signup":
-        return <Form navigateTo={navigateTo} type={`signup`} />;
-      case "login":
-        return <Form navigateTo={navigateTo} type={`login`} />;
-      case "privacy":
-        return <Privacy />;
-      case "terms":
-        return <Terms />;
-      case "articles":
-        return <Articles />;
-      case "contact":
-        return <Form type={`contact`} />;
-      case "recepie":
-        return (
-         !showRecipePage ? <Main
-            navigateToDetails={navigateToDetails}
-            currentLang={currentLang}
-          />
-          :           <RecepieDetails
-          recepie={selectedRecipe}
-          navigateBack={() => setShowRecipePage(false)}
-        />
-        );
-
-      default:
-        return <Index />;
-    }
+  // Object mapping page names to their corresponding components
+  const pageComponents = {
+    home: <Index />,
+    signup: <Form navigateTo={navigateTo} type="signup" />,
+    login: <Form navigateTo={navigateTo} type="login" />,
+    privacy: <Privacy />,
+    terms: <Terms />,
+    articles: <Articles />,
+    contact: <Form type="contact" />,
+    recepie: !showRecipePage ? (
+      <Main navigateToDetails={navigateToDetails} currentLang={currentLang} />
+    ) : (
+      <RecepieDetails
+        recepie={selectedRecipe}
+        navigateBack={() => setShowRecipePage(false)}
+      />
+    ),
   };
 
+  // Function to render the current page component
+  const renderPage = () => pageComponents[currentPage] || <Index />;
+
+  // Render the main structure of the app
   return (
     <div className="App  ">
+      {/* Header component with navigation and language change functionality */}
       <Header
         navigateTo={navigateTo}
         changeLangTo={changeLangTo}
         currentPage={currentPage}
       />
+
+      {/* Render the current page component */}
       {renderPage()}
 
+      {/* Footer component with navigation functionality */}
       <Footer navigateTo={navigateTo} />
     </div>
   );

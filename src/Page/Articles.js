@@ -1,5 +1,5 @@
 import "../CSS/magnific-popup.css";
-import "../CSS/styles.css";
+// import "../CSS/styles.css";
 import "../CSS/swiper.css";
 import { ArticleDetailsLarge, ArticleDetailsSmall } from "./Partials/Imports";
 
