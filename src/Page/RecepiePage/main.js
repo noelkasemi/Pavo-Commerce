@@ -17,15 +17,7 @@ import {
   Fragment,
 } from "../Partials/Imports";
 
-const Main = ({
-  currentLang,
-  cuisineOption,
-  isClicked,
-  diet,
-  health,
-  mealType,
-  dishType,
-}) => {
+const Main = ({ navigateToDetails, currentLang }) => {
   // State variables
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -44,6 +36,8 @@ const Main = ({
   const [editedTitle, setEditedTitle] = useState("");
   const [editingState, setEditingState] = useState({});
   const [searchQuery, setSearchQuery] = useState("pasta");
+  const [isYouAdmin, setIsYouAdmin] = useState(false);
+  const [notAdmin, setNotAdmin] = useState(false);
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -55,17 +49,10 @@ const Main = ({
       try {
         let response;
 
-        if (isClicked) {
-          response = await fetch(
-            // API endpoint for clicked recipes
-            `https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=80ba8d2f&app_key=5a8094fcc947269724c967617293f177&ingr=1-30&diet=low-carb&health=${health}&cuisineType=${cuisineOption}&mealType=${mealType}&dishType=${dishType}&calories=100-10000`
-          );
-        } else {
-          response = await fetch(
-            // API endpoint for general recipes
-            `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=80ba8d2f&app_key=5a8094fcc947269724c967617293f177&calories=100-10000`
-          );
-        }
+        response = await fetch(
+          // API endpoint for general recipes
+          `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=80ba8d2f&app_key=5a8094fcc947269724c967617293f177&calories=100-10000`
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -79,7 +66,7 @@ const Main = ({
     };
 
     fetchData();
-  }, [searchQuery, cuisineOption, isClicked, diet, health, mealType, dishType]);
+  }, [searchQuery]);
 
   // Pagination calculations
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -105,6 +92,7 @@ const Main = ({
   const openModal = (recipe) => {
     setSelectedRecipe(recipe);
     setIsOpen(true);
+    !isGuestView && navigateToDetails(recipe);
   };
 
   // Function to handle recipe editing
@@ -163,6 +151,11 @@ const Main = ({
     setRecipes(updatedRecipes);
   };
 
+  const handleAdminChange = (admin) => {
+    setIsYouAdmin(admin === "yes");
+    setNotAdmin(admin === "no");
+  };
+
   const handleRadioChange = (viewType) => {
     setIsAdminView(viewType === "admin");
     setIsModView(viewType === "moderator");
@@ -189,60 +182,92 @@ const Main = ({
           onChange={handleSearchInputChange}
         />
       </article>
+      <article className="w-full flex flex-col items-center justi">
+        <h2>Are you admin?</h2>
+        <section className="space-x-8">
+          {" "}
+          <label>
+            Yes{" "}
+            <input
+              checked={isYouAdmin}
+              type="radio"
+              onChange={() => {
+                name = "admin";
+                handleAdminChange("yes");
+                setIsYouAdmin(!isYouAdmin);
+              }}
+            />
+          </label>
+          <label>
+            No{" "}
+            <input
+              name="admin"
+              type="radio"
+              checked={notAdmin}
+              onChange={() => {
+                handleAdminChange("no");
+                setNotAdmin(!notAdmin)
+              }}
+            />
+          </label>
+        </section>
+      </article>
       {/* Checkbox section to toggle between Administrator Moderator User and Guest views */}
-      <section className="flex flex-wrap space-x-8 w-full justify-center">
-        <label className="">
-          <input
-            type="radio"
-            name="viewType"
-            checked={isAdminView}
-            onChange={() => {
-              handleRadioChange("admin");
-              setIsAdminView(!isAdminView);
-            }}
-          />
-          View as Administrator
-        </label>
+      {isYouAdmin && (
+        <section className="flex flex-wrap space-x-8 w-full justify-center">
+          <label className="">
+            <input
+              type="radio"
+              name="viewType"
+              checked={isAdminView}
+              onChange={() => {
+                handleRadioChange("admin");
+                setIsAdminView(!isAdminView);
+              }}
+            />{" "}
+            View as Administrator
+          </label>
 
-        <label>
-          <input
-            type="radio"
-            name="viewType"
-            checked={isModView}
-            onChange={() => {
-              handleRadioChange("moderator");
-              setIsModView(!isModView);
-            }}
-          />
-          View as Moderator
-        </label>
+          <label>
+            <input
+              type="radio"
+              name="viewType"
+              checked={isModView}
+              onChange={() => {
+                handleRadioChange("moderator");
+                setIsModView(!isModView);
+              }}
+            />{" "}
+            View as Moderator
+          </label>
 
-        <label>
-          <input
-            type="radio"
-            name="viewType"
-            checked={isUserView}
-            onChange={() => {
-              handleRadioChange("user");
-              setIsUserView(!isUserView);
-            }}
-          />
-          View as User
-        </label>
+          <label>
+            <input
+              type="radio"
+              name="viewType"
+              checked={isUserView}
+              onChange={() => {
+                handleRadioChange("user");
+                setIsUserView(!isUserView);
+              }}
+            />{" "}
+            View as User
+          </label>
 
-        <label>
-          <input
-            type="radio"
-            name="viewType"
-            checked={isGuestView}
-            onChange={() => {
-              handleRadioChange("guest");
-              setIsGuestView(!isGuestView);
-            }}
-          />
-          View as Guest
-        </label>
-      </section>
+          <label>
+            <input
+              type="radio"
+              name="viewType"
+              checked={isGuestView}
+              onChange={() => {
+                handleRadioChange("guest");
+                setIsGuestView(!isGuestView);
+              }}
+            />{" "}
+            View as Guest
+          </label>
+        </section>
+      )}
 
       {/* Recipe display section */}
       <div className="inset-0 flex items-center justify-center">
@@ -273,7 +298,9 @@ const Main = ({
                 onMouseLeave={() => setIsHoveredNext(false)}
                 buttonStyle={` `}
                 onClick={() => paginate(currentPage + 1)}
-                buttonChildren={<Arrow style={` -rotate-90 w-6 h-6 text-[#AAAAAA]`} />}
+                buttonChildren={
+                  <Arrow style={` -rotate-90 w-6 h-6 text-[#AAAAAA]`} />
+                }
                 panelStyle={`w-[70px] font-serif  -translate-y-14 text-sm  absolute z-10`}
               >
                 <p className="bg-white  rounded px-3 py-1 translate-x-4 -translate-y-1">
@@ -407,172 +434,90 @@ const Main = ({
       </div>
 
       {/* Recipe modal */}
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black/25" />
-          </Transition.Child>
+      {isGuestView || notAdmin ? (
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black/25" />
+            </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full  max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  {selectedRecipe && (
-                    <>
-                      {/* Display modal content */}
-                      {selectedRecipe.recipe.image && (
-                        <article className="">
-                          <img
-                            src={selectedRecipe.recipe.image}
-                            alt={selectedRecipe.recipe.label}
-                            className="h-44 w-full aspect-auto object-cover rounded mb-4"
-                          />
-                          <h2 className="px-4">
-                            <p className="text-red-700 font-semibold flex">
-                              {selectedRecipe.recipe.source}
-                              {/* Tooltip for nutrition information */}
-                              <Tooltip
-                                show={isTooltipHovered}
-                                buttonChildren={
-                                  <InfoIcon
-                                    style={`mt-1 ml-2 w-5 h-5 cursor-pointer text-black`}
-                                  />
-                                }
-                                onMouseEnter={() => setIsTooltipHovered(true)}
-                                onMouseLeave={() => setIsTooltipHovered(false)}
-                                panelStyle={`w-[330px] -translate-x-36 text-[#AAAAAA] h-16 rounded-lg bg-[#242424] absolute`}
-                              >
-                                {isTooltipHovered && (
-                                  <div className="px-2 ">
-                                    <h3 className="text-white text-sm text-center">
-                                      Nutrition
-                                    </h3>
-                                    <ul className="flex text-xs mt-1 space-x-4">
-                                      <li className="text-[#AAAAAA]">
-                                        Calories:{" "}
-                                        {selectedRecipe.recipe.totalNutrients.ENERC_KCAL.quantity.toFixed(
-                                          2
-                                        )}{" "}
-                                        {
-                                          selectedRecipe.recipe.totalNutrients
-                                            .ENERC_KCAL.unit
-                                        }
-                                      </li>
-                                      <li className="text-[#AAAAAA]">
-                                        Protein:{" "}
-                                        {selectedRecipe.recipe.totalNutrients.PROCNT.quantity.toFixed(
-                                          2
-                                        )}{" "}
-                                        {
-                                          selectedRecipe.recipe.totalNutrients
-                                            .PROCNT.unit
-                                        }
-                                      </li>
-                                      <li className="text-[#AAAAAA]">
-                                        Carbohydrates:{" "}
-                                        {selectedRecipe.recipe.totalNutrients.CHOCDF.quantity.toFixed(
-                                          2
-                                        )}{" "}
-                                        {
-                                          selectedRecipe.recipe.totalNutrients
-                                            .CHOCDF.unit
-                                        }
-                                      </li>
-                                      <li className="text-[#AAAAAA]">
-                                        Fat:{" "}
-                                        {selectedRecipe.recipe.totalNutrients.FAT.quantity.toFixed(
-                                          2
-                                        )}{" "}
-                                        {
-                                          selectedRecipe.recipe.totalNutrients
-                                            .FAT.unit
-                                        }
-                                      </li>
-                                    </ul>
-                                  </div>
-                                )}
-                              </Tooltip>
-                            </p>
-                            <p className="font-bold text-2xl flex">
-                              {selectedRecipe.recipe.label}
-                            </p>
-                          </h2>
-                        </article>
-                      )}
-                      <div className="w-full">
-                        <div className=" w-full max-w-md rounded-2xl bg-white p-2">
-                          {/* Disclosure for Ingredients */}
-                          <Disclosure as="div" className="mt-2">
-                            {({ open }) => (
-                              <>
-                                <Disclosure.Button
-                                  disabled={isGuestView}
-                                  className="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                >
-                                  <span>
-                                    {isGuestView
-                                      ? "Log in to view Ingredients"
-                                      : "Ingredients"}{" "}
-                                  </span>
-                                  {isGuestView ? (
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full  max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    {selectedRecipe && (
+                      <>
+                        {/* Display modal content */}
+                        {selectedRecipe.recipe.image && (
+                          <article className="">
+                            <img
+                              src={selectedRecipe.recipe.image}
+                              alt={selectedRecipe.recipe.label}
+                              className="h-44 w-full aspect-auto object-cover rounded mb-4"
+                            />
+                            <h2 className="px-4">
+                              <p className="text-red-700 font-semibold flex">
+                                {selectedRecipe.recipe.source}
+                                {/* Tooltip for nutrition information */}
+                              </p>
+                              <p className="font-bold text-2xl flex">
+                                {selectedRecipe.recipe.label}
+                              </p>
+                            </h2>
+                          </article>
+                        )}
+                        <div className="w-full">
+                          <div className=" w-full max-w-md rounded-2xl bg-white p-2">
+                            {/* Disclosure for Ingredients */}
+                            <Disclosure as="div" className="mt-2">
+                              {({ open }) => (
+                                <>
+                                  <Disclosure.Button
+                                    disabled={isGuestView}
+                                    className="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                  >
+                                    <span>"Log in to view Ingredients"</span>
+
                                     <Lock style={`h-5 w-5 text-blue-500`} />
-                                  ) : (
-                                    <ChevronUpIcon
-                                      className={`${
-                                        open ? "rotate-180 transform" : ""
-                                      } h-5 w-5 text-blue-500`}
-                                    />
-                                  )}
-                                </Disclosure.Button>
-                                <Disclosure.Panel className="h-24 text-sm text-gray-500">
-                                  <ul className="my-2 list-disc ml-4 h-full overflow-auto">
-                                    {selectedRecipe.recipe.ingredients.map(
-                                      (ingredient, index) => (
-                                        <li key={index}>
-                                          <span className="mr-2">&#8226;</span>{" "}
-                                          {ingredient.text}
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                </Disclosure.Panel>
-                              </>
-                            )}
-                          </Disclosure>
+                                  </Disclosure.Button>
+                                </>
+                              )}
+                            </Disclosure>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  )}
-                  {/* Close button */}
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 mt-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
-                  >
-                    Close
-                  </button>
-                </Dialog.Panel>
-              </Transition.Child>
+                      </>
+                    )}
+                    {/* Close button */}
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 mt-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={closeModal}
+                    >
+                      Close
+                    </button>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
             </div>
-          </div>
-        </Dialog>
-      </Transition>
+          </Dialog>
+        </Transition>
+      ) : null}
     </>
   );
 };

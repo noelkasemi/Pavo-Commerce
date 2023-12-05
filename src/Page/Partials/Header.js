@@ -3,6 +3,7 @@ import { Arrow, useState, useEffect, Tooltip, Logo, HeaderSmartphone, UsFlag, Al
 export default function Header({ navigateTo, currentPage, changeLangTo }) {
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
+  const [isHovered2, setIsHovered2] = useState(false);
 
   // useEffect to handle side effects related to navigation changes
   useEffect(() => {
@@ -145,18 +146,43 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
             >
               Sign up
             </button>
-            <img
-              onClick={() => changeLangTo("albanian")}
-              src={AlbFlag}
-              alt="alb flag"
-              className="w-5 h-5 ml-4 mr-2 cursor-pointer"
-            />
-            <img
-              onClick={() => changeLangTo("english")}
-              src={UsFlag}
-              alt="alb flag"
-              className="w-5 h-5 cursor-pointer"
-            />
+            <li className="dropdown ">
+                <a
+                  className="nav-link -translate-y-1 flex"
+                  id="dropdown01"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onMouseEnter={() => setIsHovered2(true)}
+                  onMouseLeave={() => setIsHovered2(false)}
+                >
+                  <Tooltip
+                    show={isHovered2}
+                    buttonChildren={
+                      <p className="flex text-sm flex items-center font-semibold hover:text-[#ff6f85]">
+                        Lang 
+                      </p>
+                    }
+                    panelStyle={`bg-white absolute px-2 py-2 rounded mt-2 w-24 -translate-x-4 shadow-lg`}
+                    children={
+                      <ul className="">
+                        <li
+                          onClick={() => changeLangTo('english')}
+                          className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
+                        >
+                          ENGLISH
+                        </li>
+                        <li
+                          onClick={() => changeLangTo('albanian')}
+                          className="cursor-pointer text-[#808f99] hover:text-[#ff6f85]  px-2 py-4"
+                        >
+                          ALBANIAN
+                        </li>
+                      </ul>
+                    }
+                  />
+                </a>
+              </li>
           </div>
           {/* end of navbar-collapse */}
         </div>
