@@ -62,7 +62,7 @@ export default function Form({ type, navigateTo }) {
   };
 
   return (
-    <main className="relative flex flex-col bg-[#eeecee] justify-center min-h-screen overflow-hidden">
+    <main className="relative pt-24 pb-14 flex flex-col bg-[#eeecee] justify-center min-h-screen overflow-hidden">
       {/* Form Section */}
       <section className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
         {/* Form Title based on which form is displayed */}

@@ -185,7 +185,7 @@ const Main = ({ navigateToDetails, currentLang }) => {
         />
       </article>
       <article className="w-full flex flex-col items-center justi">
-        <h2>Are you admin?</h2>
+        <h2 className="text-2xl font-bold">Are you admin?</h2>
         <section className="space-x-8">
           {" "}
           <label>

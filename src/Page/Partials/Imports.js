@@ -13,7 +13,6 @@ import Lock from "../../assets/Svg/Lock";
 import SearchIcon from "../../assets/Svg/SearchIcon";
 import { useState, useEffect, Fragment } from "react";
 import MyListbox from "../../Tools/Listbox";
-import Data from "../../Data/RecepieData.json";
 import { Filter } from "../../assets/Svg/FilterIcon";
 import Bell from "../../assets/Svg/Bell";
 import CheckIcon from "../../assets/Svg/CheckIcon";
@@ -30,12 +29,12 @@ import Testimonial3 from "../../assets/Images/testimonial-3.jpg";
 import Testimonial4 from "../../assets/Images/testimonial-4.jpg";
 import Testimonial5 from "../../assets/Images/testimonial-5.jpg";
 import Testimonial6 from "../../assets/Images/testimonial-6.jpg";
-import FeaturesIcon1 from "../../assets/Svg/features-icon-1.svg";
-import FeaturesIcon2 from "../../assets/Svg/features-icon-2.svg";
-import FeaturesIcon3 from "../../assets/Svg/features-icon-3.svg";
-import FeaturesIcon4 from "../../assets/Svg/features-icon-4.svg";
-import FeaturesIcon5 from "../../assets/Svg/features-icon-5.svg";
-import FeaturesIcon6 from "../../assets/Svg/features-icon-6.svg";
+import FeaturesIcon1 from "../../assets/Svg/features-icon-1";
+import FeaturesIcon2 from "../../assets/Svg/features-icon-2";
+import FeaturesIcon3 from "../../assets/Svg/features-icon-3";
+import FeaturesIcon4 from "../../assets/Svg/features-icon-4";
+import FeaturesIcon5 from "../../assets/Svg/features-icon-5";
+import FeaturesIcon6 from "../../assets/Svg/features-icon-6";
 import MyDisclosure from "../../Tools/Disclosure";
 import ArticleDetailsLarge from "../../assets/Images/article-details-large.jpg";
 import ArticleDetailsSmall from "../../assets/Images/article-details-small.jpg";
@@ -44,6 +43,7 @@ import Sun from "../../assets/Svg/Sun";
 import Table from "../../Tools/Table";
 import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
+import Button from '../Partials/Button'
 
  
 export {
@@ -65,7 +65,6 @@ export {
   CheckIcon,
   Bell,
   Filter,
-  Data,
   MyListbox,
   ConclusionSmartphone,
   Details1,
@@ -98,5 +97,5 @@ export {
   InfoIcon,
   UsFlag,
   AlbFlag,
-
+  Button
 };

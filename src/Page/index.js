@@ -1,616 +1,131 @@
-import "../CSS/magnific-popup.css";
-// import "../CSS/styles.css";
-import "../CSS/swiper.css";
-import { ConclusionSmartphone, Details1,Details2,Details3,Lightbox,Testimonial1,Testimonial2,Testimonial3,Testimonial4,Testimonial5,Testimonial6,FeaturesIcon1,FeaturesIcon2,FeaturesIcon3,FeaturesIcon4,FeaturesIcon5,FeaturesIcon6,MyDisclosure,} from "./Partials/Imports";
+import { useEffect, useState } from 'react';
+import { ConclusionSmartphone, Details1,Details2,Details3,Lightbox,Testimonial1,Testimonial2,Testimonial3,Testimonial4,Testimonial5,Testimonial6,FeaturesIcon1,FeaturesIcon2,FeaturesIcon3,FeaturesIcon4,FeaturesIcon5,FeaturesIcon6,MyDisclosure, Arrow, Button} from "./Partials/Imports";
 
 export default function Index() {
+  const card = [{icon: <FeaturesIcon1 />,  title: 'Platform Integration', description: 'You sales force can use the app on any smartphone platform without compatibility issues'},
+  {icon: <FeaturesIcon2 />, title: 'Easy On Resources', description: 'Works smoothly even on older generation hardware due to our optimization efforts'},
+  {icon: <FeaturesIcon3 />, title: 'Great Performance', description: 'Optimized code and innovative technology insure no delays and ultra-fast responsiveness'},
+  {icon: <FeaturesIcon4 />, title: 'Multiple Languages', description: 'Choose from one of the 40 languages that come pre-installed and start selling smarter'},
+  {icon: <FeaturesIcon5 />, title: 'Free Updates', description: "Don't worry about future costs, pay once and receive all future updates at no extra cost"},
+  {icon: <FeaturesIcon6 />, title: 'Community Support', description: 'Register the app and get acces to knowledge and ideas from the Pavo online community'},]
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 945);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const users = [{image: Testimonial1 , name: 'Jude Thorn - Designer', description: "It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great"},
+  {image: Testimonial2 , name: 'Roy Smith - Developer', description: "We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers"},
+  {image: Testimonial3 , name: 'Marsha Singer - Marketer', description: "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy"},
+  {image: Testimonial4 , name: 'Tim Shaw - Designer', description: "We've been waiting for a powerful piece of software that can help businesses manage their marketing projects"},
+  {image: Testimonial5 , name: 'Lindsay Spice - Marketer', description: "Searching for a great prototyping and layout design app was difficult but thankfully I found app suite quickly"},
+  {image: Testimonial6 , name: 'Ann Blake - Developer', description: "The app support team is amazing. They've helped me with some issues and I am so grateful to the entire team"},]
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1020);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? users.length - 1 : prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === users.length - 1 ? 0 : prevIndex + 1));
+  };
   return (
     <>
-      {/* <Header /> */}
-      {/* Introduction */}
-      <div className="pt-4 pb-14 text-center">
-        <div className="container px-4 sm:px-8 xl:px-4">
-          <p className="mb-4 text-gray-800 text-3xl leading-10 lg:max-w-5xl lg:mx-auto">
-            {" "}
-            Team management mobile apps don’t get better than Pavo. It’s
-            probably the best app in the world for this purpose. Don’t hesitate
-            to give it a try today and you will fall in love with it
-          </p>
-        </div>{" "}
-        {/* end of container */}
-      </div>
-      {/* end of introduction */}
-      {/* Features */}
-      <div id="features" className="cards-1">
-        <div className="container px-4 sm:px-8 xl:px-4">
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-1.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Platform Integration</h5>
-              <p className="mb-4">
-                You sales force can use the app on any smartphone platform
-                without compatibility issues
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-2.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Easy On Resources</h5>
-              <p className="mb-4">
-                Works smoothly even on older generation hardware due to our
-                optimization efforts
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-3.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Great Performance</h5>
-              <p className="mb-4">
-                Optimized code and innovative technology insure no delays and
-                ultra-fast responsiveness
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-4.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Multiple Languages</h5>
-              <p className="mb-4">
-                Choose from one of the 40 languages that come pre-installed and
-                start selling smarter
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-5.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Free Updates</h5>
-              <p className="mb-4">
-                Don't worry about future costs, pay once and receive all future
-                updates at no extra cost
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-          {/* Card */}
-          <div className="card">
-            <div className="card-image">
-              <img src="images/features-icon-6.svg" alt="alternative" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Community Support</h5>
-              <p className="mb-4">
-                Register the app and get acces to knowledge and ideas from the
-                Pavo online community
-              </p>
-            </div>
-          </div>
-          {/* end of card */}
-        </div>{" "}
-        {/* end of container */}
-      </div>{" "}
-      {/* end of cards-1 */}
-      {/* end of features */}
-      {/* Details 1 */}
-      <div className="pt-4 pb-14 text-center">
-        <div className="container px-4 sm:px-8 xl:px-4">
-          <p className="mb-4 text-gray-800 text-3xl leading-10 lg:max-w-5xl lg:mx-auto">
-            {" "}
-            Team management mobile apps don’t get better than Pavo. It’s
-            probably the best app in the world for this purpose. Don’t hesitate
-            to give it a try today and you will fall in love with it
-          </p>
-        </div>{" "}
-        {/* end of container */}
-      </div>
-      {/* end of details 1 */}
-      {/* Details 2 */}
-      <div className="py-24">
-        <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
-          <div className="lg:col-span-7">
-            <div className="mb-12 lg:mb-0 xl:mr-14">
-              <img
-                className="inline"
-                src="images/details-2.jpg"
-                alt="alternative"
-              />
-            </div>
-          </div>{" "}
-          {/* end of col */}
-          <div className="lg:col-span-5">
-            <div className="xl:mt-12">
-              <h2 className="mb-6">
-                Instant results for the marketing department
-              </h2>
-              <ul className="list mb-7 space-y-2">
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Features that will help you and your marketers</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Smooth learning curve due to the knowledge base</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Ready out-of-the-box with minor setup settings</div>
-                </li>
-              </ul>
-              <a
-                className="btn-solid-reg popup-with-move-anim mr-1.5"
-                href="#details-lightbox"
-              >
-                Lightbox
-              </a>
-              <a className="btn-outline-reg" href="article.html">
-                Details
-              </a>
-            </div>
-          </div>{" "}
-          {/* end of col */}
-        </div>{" "}
-        {/* end of container */}
-      </div>
-      {/* end of details 2 */}
-      {/* Details Lightbox */}
-      {/* Lightbox */}
-      <div className="py-24">
-        <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
-          <div className="lg:col-span-7">
-            <div className="mb-12 lg:mb-0 xl:mr-14">
-              <img
-                className="inline"
-                src="images/details-2.jpg"
-                alt="alternative"
-              />
-            </div>
-          </div>{" "}
-          {/* end of col */}
-          <div className="lg:col-span-5">
-            <div className="xl:mt-12">
-              <h2 className="mb-6">
-                Instant results for the marketing department
-              </h2>
-              <ul className="list mb-7 space-y-2">
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Features that will help you and your marketers</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Smooth learning curve due to the knowledge base</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Ready out-of-the-box with minor setup settings</div>
-                </li>
-              </ul>
-              <a
-                className="btn-solid-reg popup-with-move-anim mr-1.5"
-                href="#details-lightbox"
-              >
-                Lightbox
-              </a>
-              <a className="btn-outline-reg" href="article.html">
-                Details
-              </a>
-            </div>
-          </div>{" "}
-          {/* end of col */}
-        </div>{" "}
-        {/* end of container */}
-      </div>
-      {/* end of lightbox-basic */}
-      {/* end of lightbox */}
-      {/* end of details lightbox */}
-      {/* Details 3 */}
-      <div className="pt-16 pb-12">
-        <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
-          <div className="lg:col-span-5">
-            <div className="mb-16 lg:mb-0 xl:mt-16">
-              <h2 className="mb-6">
-                Platform integration and life time free updates
-              </h2>
-              <p className="mb-4">
-                Get a glimpse of what this app can do for your marketing
-                automation and understand why current users are so excited when
-                using Pavo together with their teams.
-              </p>
-              <p className="mb-4">
-                We will promptly answer any questions and honor your requests
-                based on the service level agreement
-              </p>
-            </div>
-          </div>{" "}
-          {/* end of col */}
-          <div className="lg:col-span-7">
-            <div className="ml-14">
-              <img
-                className="inline"
-                src="images/details-3.jpg"
-                alt="alternative"
-              />
-            </div>
-          </div>{" "}
-          {/* end of col */}
-        </div>{" "}
-        {/* end of container */}
-      </div>
-      {/* end of details 3 */}
-      {/* Statistics */}
-      <div className="counter">
-        <div className="container px-4 sm:px-8">
-          {/* Counter */}
-          <div id="counter">
-            <div className="cell">
-              <div className="counter-value number-count" data-count={231}>
-                1
-              </div>
-              <p className="counter-info">Happy Users</p>
-            </div>
-            <div className="cell">
-              <div className="counter-value number-count" data-count={385}>
-                1
-              </div>
-              <p className="counter-info">Issues Solved</p>
-            </div>
-            <div className="cell">
-              <div className="counter-value number-count" data-count={159}>
-                1
-              </div>
-              <p className="counter-info">Good Reviews</p>
-            </div>
-            <div className="cell">
-              <div className="counter-value number-count" data-count={127}>
-                1
-              </div>
-              <p className="counter-info">Case Studies</p>
-            </div>
-            <div className="cell">
-              <div className="counter-value number-count" data-count={211}>
-                1
-              </div>
-              <p className="counter-info">Orders Received</p>
-            </div>
-          </div>
-          {/* end of counter */}
-        </div>{" "}
-        {/* end of container */}
-      </div>{" "}
-      {/* end of counter */}
-      {/* end of statistics */}
-      {/* Testimonials */}
-      <div className="slider-1 py-32 bg-gray">
-        <div className="container px-4 sm:px-8">
-          <h2 className="mb-12 text-center lg:max-w-xl lg:mx-auto">
-            What do users think about Pavo
-          </h2>
-          {/* Card Slider */}
-          <div className="slider-container">
-            <div className="swiper-container card-slider">
-              <div className="swiper-wrapper">
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-1.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        It's been so fun to work with Pavo, I've managed to
-                        integrate it properly into my business flow and it's
-                        great
-                      </p>
-                      <p className="testimonial-author">
-                        Jude Thorn - Designer
-                      </p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-2.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        We were so focused on launching as many campaigns as
-                        possible that we've forgotten to target our loyal
-                        customers
-                      </p>
-                      <p className="testimonial-author">
-                        Roy Smith - Developer
-                      </p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-3.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        I've been searching for a tool like Pavo for so long. I
-                        love the reports it generates and the amazing high
-                        accuracy
-                      </p>
-                      <p className="testimonial-author">
-                        Marsha Singer - Marketer
-                      </p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-4.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        We've been waiting for a powerful piece of software that
-                        can help businesses manage their marketing projects
-                      </p>
-                      <p className="testimonial-author">Tim Shaw - Designer</p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-5.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        Searching for a great prototyping and layout design app
-                        was difficult but thankfully I found app suite quickly
-                      </p>
-                      <p className="testimonial-author">
-                        Lindsay Spice - Marketer
-                      </p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-                {/* Slide */}
-                <div className="swiper-slide">
-                  <div className="card">
-                    <img
-                      className="card-image"
-                      src="images/testimonial-6.jpg"
-                      alt="alternative"
-                    />
-                    <div className="card-body">
-                      <p className="italic mb-3">
-                        The app support team is amazing. They've helped me with
-                        some issues and I am so grateful to the entire team
-                      </p>
-                      <p className="testimonial-author">
-                        Ann Blake - Developer
-                      </p>
-                    </div>
-                  </div>
-                </div>{" "}
-                {/* end of swiper-slide */}
-                {/* end of slide */}
-              </div>{" "}
-              {/* end of swiper-wrapper */}
-              {/* Add Arrows */}
-              <div className="swiper-button-next" />
-              <div className="swiper-button-prev" />
-              {/* end of add arrows */}
-            </div>{" "}
-            {/* end of swiper-container */}
-          </div>{" "}
-          {/* end of slider-container */}
-          {/* end of card slider */}
-        </div>{" "}
-        {/* end of container */}
-      </div>{" "}
-      {/* end of slider-1 */}
-      {/* end of testimonials */}
-      {/* Pricing */}
-      <div id="pricing" className="cards-2">
-        <div className="absolute bottom-0 h-40 w-full bg-white" />
-        <div className="container px-4 pb-px sm:px-8">
-          <h2 className="mb-2.5 text-white lg:max-w-xl lg:mx-auto">
-            Pricing options for all budgets
-          </h2>
-          <p className="mb-16 text-white lg:max-w-3xl lg:mx-auto">
-            {" "}
-            Our pricing plans are setup in such a way that any user can start
-            enjoying Pavo without worrying so much about costs. They are
-            flexible and work for any type of industry{" "}
-          </p>
-          {/* Card*/}
-          <div className="card">
-            <div className="card-body">
-              <div className="card-title">STANDARD</div>
-              <div className="price">
-                <span className="currency">$</span>
-                <span className="value">29</span>
-              </div>
-              <div className="frequency">monthly</div>
-              <p>
-                This basic package covers the marketing needs of small startups
-              </p>
-              <ul className="list mb-7 space-y-2 text-left">
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>List building and relations</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Seamless platform integration</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Great performance on devices</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Community support and videos</div>
-                </li>
-              </ul>
-              <div className="button-wrapper">
-                <a className="btn-solid-reg page-scroll" href="#download">
-                  Download
-                </a>
-              </div>
-            </div>
-          </div>{" "}
-          {/* end of card */}
-          {/* end of card */}
-          {/* Card*/}
-          <div className="card">
-            <div className="card-body">
-              <div className="card-title">ADVANCED</div>
-              <div className="price">
-                <span className="currency">$</span>
-                <span className="value">39</span>
-              </div>
-              <div className="frequency">monthly</div>
-              <p>This is a more advanced package suited for medium companies</p>
-              <ul className="list mb-7 space-y-2 text-left">
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>List building and relations</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Seamless platform integration</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Great performance on devices</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Community support and videos</div>
-                </li>
-              </ul>
-              <div className="button-wrapper">
-                <a className="btn-solid-reg page-scroll" href="#download">
-                  Download
-                </a>
-              </div>
-            </div>
-          </div>{" "}
-          {/* end of card */}
-          {/* end of card */}
-          {/* Card*/}
-          <div className="card">
-            <div className="card-body">
-              <div className="card-title">COMPLETE</div>
-              <div className="price">
-                <span className="currency">$</span>
-                <span className="value">49</span>
-              </div>
-              <div className="frequency">monthly</div>
-              <p>
-                This is a comprehensive package designed for big organizations
-              </p>
-              <ul className="list mb-7 text-left space-y-2">
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>List building and relations</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Seamless platform integration</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Great performance on devices</div>
-                </li>
-                <li className="flex">
-                  <i className="fas fa-chevron-right" />
-                  <div>Community support and videos</div>
-                </li>
-              </ul>
-              <div className="button-wrapper">
-                <a className="btn-solid-reg page-scroll" href="#download">
-                  Download
-                </a>
-              </div>
-            </div>
-          </div>{" "}
-          {/* end of card */}
-          {/* end of card */}
-        </div>{" "}
-        {/* end of container */}
-      </div>{" "}
-      {/* end of cards-2 */}
-      {/* end of pricing */}
-      {/* Conclusion */}
-      <div id="download" className="basic-5">
-        <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-2">
-          <div className="mb-16 lg:mb-0">
-            <img src="images/conclusion-smartphone.png" alt="alternative" />
-          </div>
-          <div className="lg:mt-24 xl:mt-44 xl:ml-12">
-            <p className="mb-9 text-gray-800 text-3xl leading-10">
-              Team management mobile applications don’t get much better than
-              Pavo. Download it today
-            </p>
-            <a className="btn-solid-lg" href="#your-link">
-              <i className="fab fa-apple" />
-              Download
-            </a>
-            <a className="btn-solid-lg secondary" href="#your-link">
-              <i className="fab fa-google-play" />
-              Download
-            </a>
-          </div>
-        </div>{" "}
-        {/* end of container */}
-      </div>{" "}
-      {/* end of basic-5 */}
-      {/* end of conclusion */}
+       <section className={`relative ${isMobile ? 'top-[300px]' : ''} `}>
+            <article className='mt-12 mb-32 text-center px-4 xl:px-4'>
+            <h1 className='lg:max-w-5xl text-3xl mx-auto '>Team management mobile apps don’t get better than Pavo. It’s probably the best app in the world for this purpose. Don’t hesitate to give it a try today and you will fall in love with it</h1>
+            </article>
+            <section className={`flex flex-wrap justify-center mx-auto px-8`}>
+        {card.map((item, index) => (
+          <article key={index} className={`flex flex-col mb-8 ${isMobile ? 'w-full' : 'w-[325px]'} xl:w-1/4 mx-2 px-12 bg-[#f1f9fc] h-[290px] items-center justify-center rounded-xl p-4 `}>
+            <span className="block">{item.icon}</span>
+            <h2 className="text-xl font-bold mt-2">{item.title}</h2>
+            <p className="mt-2 text-center">{item.description}</p>
+          </article>
+        ))}
+      </section>
+        </section>
+        <section className={`relative ${isMobile ? 'top-[300px]' : ''} space-y-16`}>
+            <section className='lg:grid grid-cols-12 gap-x-12 2xl:mx-40 flex flex-wrap items-center justify-center sm:px-12'>
+            <article className='lg:col-span-5 lg:mx-0 px-4 sm:mx-10'>
+                <h3 className='font-bold text-4xl my-2 '>Results driven ground breaking technology</h3>
+                <p className='text-gray-500 text-lg my-4 '>Based on our team's extensive experience in developing line of business applications and constructive customer feedback we reached a new level of revenue.</p>
+                <p className='text-gray-500 text-lg '>We enjoy helping small and medium sized tech businesses take a shot at established Fortune 500 companies</p>
+            </article>
+            <article className='lg:col-span-7  my-12'>
+                <img src={Details1} alt="details-1" className={`${isMobile ? '' : 'w-[600px]'}`} />
+            </article>
+            </section>
+            <section className='lg:grid grid-cols-12 gap-x-12 2xl:mx-40 flex flex-wrap items-center justify-center sm:px-12'>
+             <article className='lg:col-span-7  my-12'>
+                <img src={Details2} alt="details-2" className={`${isMobile ? '' : 'w-[600px]'}`} />
+            </article> 
+            <article className='lg:col-span-5 lg:mx-0 px-2 sm:mx-10'>
+                <h3 className='font-bold text-4xl my-4 ml-1 '>Instant results for the marketing department</h3>
+                <p className='text-gray-500 text-lg flex items-center '><Arrow style={`w-5 h-5 -rotate-90`} /> Features that will help you and your marketers</p>
+                <p className='text-gray-500 text-lg flex my-1 items-center'><Arrow style={`w-5 h-5 -rotate-90`} />Smooth learning curve due to the knowledge base</p>
+                <p className='text-gray-500 text-lg flex items-center '><Arrow style={`w-5 h-5 -rotate-90`} />Ready out-of-the-box with minor setup settings</p>
+                <Button style='bg-[#4f46e5] text-white font-semibold my-4 hover:bg-white hover:text-[#4f46e5] hover:border border-[#4f46e5] ml-2 py-3 px-[40px]' text='Lightbox' />
+                <Button style='bg-white text-[#252c38] font-semibold my-4 hover:bg-[#252c38] hover:text-[white] border border-[#252c38] mx-4 py-3 px-[40px] ' text='Details' />
+                
+            </article>
+          
+            </section>
+            <section className='lg:grid grid-cols-12 gap-x-12 2xl:mx-40 flex flex-wrap items-center justify-center sm:px-12'>
+            <article className='lg:col-span-5  lg:mx-0 px-2 sm:mx-10'>
+                <h3 className='font-bold text-4xl my-2 '>Platform integration and life time free updates</h3>
+                <p className='text-gray-500 text-lg my-4 '>Get a glimpse of what this app can do for your marketing automation and understand why current users are so excited when using Pavo together with their teams.</p>
+                <p className='text-gray-500 text-lg '>We will promptly answer any questions and honor your requests based on the service level agreement</p>
+            </article>
+            <article className='lg:col-span-7 lg:mx-4 my-12'>
+                <img src={Details3} alt="details-1" className={`${isMobile ? '' : 'w-[600px]'}`} />
+            </article>
+            </section>
+        </section>
+        <section className={`relative ${isMobile ? 'top-[300px]' : ''} px-8 flex flex-col justify-center items-center my-12 space-y-16`}>
+          <section className='w-fit flex flex-wrap items-center justify-center'>
+            <article  className={`sm:px-8 px-4`}>
+                <h2 className="font-bold text-6xl my-2 text-center">231</h2>
+                <p className="text-sm text-gray-500 text-center">Happy Users</p>
+            </article>
+            <article  className={`sm:px-8 px-4`}>
+                <h2 className="font-bold text-6xl my-2 text-center">385</h2>
+                <p className="text-sm text-gray-500 text-center">Issues Solved</p>
+            </article>
+            <article className={`sm:px-8 px-4`} >
+                <h2 className="font-bold text-6xl my-2 text-center">159</h2>
+                <p className="text-sm text-gray-500 text-center">Good Reviews</p>
+            </article>
+            <article className={`sm:px-8 px-4`} >
+                <h2 className="font-bold text-6xl my-2 text-center">127</h2>
+                <p className="text-sm text-gray-500 text-center">Case Studies</p>
+            </article>
+            <article className={`sm:px-8 px-4`} >
+                <h2 className="font-bold text-6xl my-2 text-center">211</h2>
+                <p className="text-sm text-gray-500 text-center">Orders Received</p>
+            </article>
+            </section>
+            <section className='w-full'>
+                <section className='flex items-center justify-center w-full'>
+                    <Arrow  onClick={handlePrev} style='w-10 h-10 rotate-90 cursor-pointer h-20 text-gray-700 rotate-180 mr-4' />
+                   <section className='overflow-x-hidden lg:w-[1000px] sm:w-[670px] w-[full]  '>
+                    <h2 className='font-bold text-4xl text-center my-8 mb-12'>What do users think about Pavo</h2>
+                    <section className={`carousel-container flex w-fit space-x-8 transition-transform duration-300 ease-in-out transform ` } style={{ transform: `translateX(-${currentIndex * (300 + 8)}px)` }}>
+                    {users.map((user, index) => <article className='flex flex-col w-[300px] items-center space-y-4' key={index} >
+                        <img className='rounded-full w-24 h-24' src={user.image} alt={`testimonial ` + index} />
+                        <p className='italic text-center text-gray-500'>"{user.description}"</p>
+                        <h4 className='font-bold text-xl text-center'>{user.name}</h4>
+                    </article>)}
+                    </section>
+                    </section>
+                    <Arrow onClick={handleNext} style='w-10 h-10 -rotate-90 cursor-pointer h-20 text-gray-700 ml-4'/>
+                </section>
+            </section>
+        </section>
       <MyDisclosure
         buttonChildren={`What is your refund policy?`}
         children={` If you're unhappy with your purchase for any reason, email us
