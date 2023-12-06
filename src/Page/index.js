@@ -9,7 +9,9 @@ export default function Index() {
   {icon: <FeaturesIcon5 />, title: 'Free Updates', description: "Don't worry about future costs, pay once and receive all future updates at no extra cost"},
   {icon: <FeaturesIcon6 />, title: 'Community Support', description: 'Register the app and get acces to knowledge and ideas from the Pavo online community'},]
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 945);
+  
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const users = [{image: Testimonial1 , name: 'Jude Thorn - Designer', description: "It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great"},
   {image: Testimonial2 , name: 'Roy Smith - Developer', description: "We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers"},
   {image: Testimonial3 , name: 'Marsha Singer - Marketer', description: "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy"},
@@ -31,8 +33,10 @@ export default function Index() {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === users.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === users.length - 1 ? 0 : (prevIndex + 1 && currentIndex === 3 ? setCurrentIndex(0) : '')) );
   };
+
+  
   return (
     <>
        <section className={`relative ${isMobile ? 'top-[300px]' : ''} `}>
@@ -114,7 +118,7 @@ export default function Index() {
                     <Arrow  onClick={handlePrev} style='w-10 h-10 rotate-90 cursor-pointer h-20 text-gray-700 rotate-180 mr-4' />
                    <section className='overflow-x-hidden lg:w-[1000px] sm:w-[670px] w-[full]  '>
                     <h2 className='font-bold text-4xl text-center my-8 mb-12'>What do users think about Pavo</h2>
-                    <section className={`carousel-container flex w-fit space-x-8 transition-transform duration-300 ease-in-out transform ` } style={{ transform: `translateX(-${currentIndex * (300 + 8)}px)` }}>
+                    <section className={`carousel-container flex w-fit space-x-8 transition-transform duration-300 ease-in-out transform ` } style={{ transform: `translateX(-${currentIndex * (308)}px)` }}>
                     {users.map((user, index) => <article className='flex flex-col w-[300px] items-center space-y-4' key={index} >
                         <img className='rounded-full w-24 h-24' src={user.image} alt={`testimonial ` + index} />
                         <p className='italic text-center text-gray-500'>"{user.description}"</p>
