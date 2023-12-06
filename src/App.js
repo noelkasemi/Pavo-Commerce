@@ -13,7 +13,7 @@ import RecepieDetails from "./Page/RecepiePage/RecepieDetails";
 export default function App() {
   // State to check which page is and should be rendered
   const [currentPage, setCurrentPage] = useState("home");
-  const [currentLang, setCurrentLang] = useState("english");
+  const [currentLang, setCurrentLang] = useState("English");
   const [showRecipePage, setShowRecipePage] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 

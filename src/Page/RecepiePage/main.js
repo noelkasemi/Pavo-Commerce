@@ -39,6 +39,7 @@ const Main = ({ navigateToDetails, currentLang }) => {
   const [isYouAdmin, setIsYouAdmin] = useState(false);
   const [notAdmin, setNotAdmin] = useState(false);
 
+  console.log(currentLang)
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -163,12 +164,11 @@ const Main = ({ navigateToDetails, currentLang }) => {
     setIsGuestView(viewType === "guest");
   };
 
-  console.log(isGuestView)
 
   return (
     <>
       <h2 className="font-bold text-2xl text-center font-serif text-black">
-        {currentLang === "english"
+        {currentLang === "English"
           ? "Search your favorite food and get the recipe in seconds"
           : "Kerko ushqimin tuaj te preferuar dhe gjej receten ne sekonda"}
       </h2>

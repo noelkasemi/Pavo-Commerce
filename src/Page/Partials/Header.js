@@ -1,35 +1,29 @@
-import { Arrow, useState, useEffect, Tooltip, Logo, HeaderSmartphone, UsFlag, AlbFlag } from "../Partials/Imports";
-import MyCombox from "../../Tools/Combox";
+import { Arrow, useState, useEffect, Tooltip, Logo, MyListbox } from "../Partials/Imports";
 
 export default function Header({ navigateTo, currentPage, changeLangTo }) {
+  const languages = ["English", "Albanian"];
+
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
+  const [selected, setSelected] = useState(languages[0]);
 
   // useEffect to handle side effects related to navigation changes
   useEffect(() => {
     //  scrolls to the top of the page when the navigation changes
     window.scrollTo(0, 0);
   }, [currentPage]); // This effect will run when currentPage changes
-
-
+console.log(selected)
   return (
     <>
-      <style>
-        {`
-          ul.list-none {
-            list-style-type: none;
-          }
-        `}
-      </style>
 
       {/* Navigation */}
       <nav className="navbar z-30 bg-white shadow w-full fixed">
-        <div className=" w-full py-4 sm:px-4 lg:px-8 flex flex-wrap items-center justify-between ">
+        <section className=" w-full py-4 sm:px-4 lg:px-8 flex flex-wrap items-center justify-between ">
           <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer">
             <img src={Logo} alt="alternative" className="h-8" />
           </a>
 
-          <div
+          <section
             className="navbar-collapse offcanvas-collapse space-x-6 lg:flex lg:flex-grow lg:items-center"
             id="navbarsExampleDefault"
           >
@@ -112,10 +106,10 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
             >
               Sign up
             </button>
-            <MyCombox  changeLangTo={changeLangTo}/>
-          </div>
+            <MyListbox selectedValue={selected} setSelectedValue={setSelected} children={<Arrow style={`w-3 h-3 ml-[1px]`} />} onClick={() => changeLangTo(selected)}  listData={languages} style={`right-7 top-12`} />
+          </section>
           {/* end of navbar-collapse */}
-        </div>
+        </section>
         {/* end of container */}
       </nav>
       {/* end of navbar */}
