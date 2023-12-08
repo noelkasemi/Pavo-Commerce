@@ -13,8 +13,8 @@ export default function MyDisclosure({
   // buttonChildren - prop for adding text to the button
   // buttonStyle - prop for styling the Disclosure Button
   return (
-    <div className="w-full">
-      <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
+    <section className="w-full">
+      <section className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
         <Disclosure>
           {({ open }) => (
             <>
@@ -57,7 +57,7 @@ export default function MyDisclosure({
             </>
           )}
         </Disclosure>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }

@@ -44,7 +44,7 @@ import Table from "../../Tools/Table";
 import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
 import Button from '../Partials/Button'
-
+import Lines from '../../assets/Svg/3Lines'
  
 export {
   React,
@@ -97,5 +97,6 @@ export {
   InfoIcon,
   UsFlag,
   AlbFlag,
-  Button
+  Button,
+  Lines
 };

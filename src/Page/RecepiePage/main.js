@@ -39,7 +39,7 @@ const Main = ({ navigateToDetails, currentLang }) => {
   const [isYouAdmin, setIsYouAdmin] = useState(false);
   const [notAdmin, setNotAdmin] = useState(false);
 
-  console.log(currentLang)
+
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };

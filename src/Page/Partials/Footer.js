@@ -1,7 +1,7 @@
 export default function Footer({ navigateTo }) {
   return (
-    <footer className="h-[300px] flex flex-col bg-gradient-to-b from-white to-cyan-100">
-      <article className="w-1/2 mx-auto mb-36 mt-14">
+    <footer className="h-[260px] mt-24 flex flex-col space-y-14 md:space-y-28 bg-gradient-to-b from-white to-cyan-100">
+      <article className="md:w-1/2 mx-auto ">
         {" "}
         <h2 className="text-center  text-xl font-bold ">
           Pavo is a mobile application for marketing automation and you can
@@ -15,18 +15,12 @@ export default function Footer({ navigateTo }) {
         </h2>
       </article>
 
-      <article className="flex  text-slate-500 h-1/2 space-x-24 w-full justify-center">
-        <ul className="flex space-x-4">
-          <li>Article Details</li>
-          <li>Terms & Conditions</li>
-          <li>Privacy Policy</li>
-        </ul>
-        <article className="flex space-x-24">
-          {" "}
-          <p>Copyright Your Name</p>
-          <p>Distributed by: Themewagon</p>
-        </article>
-      </article>
+      <ul className=" flex md:flex-row flex-col text-slate-500 w-full justify-center items-center md:space-x-4 ">
+        <li>Article Details</li>
+        <li>Terms & Conditions</li>
+        <li>Privacy Policy</li> <li>Copyright Your Name</li>
+        <li>Distributed by: Themewagon</li>
+      </ul>
     </footer>
   );
 }

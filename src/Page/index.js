@@ -3,118 +3,34 @@ import {
   Details1,
   Details2,
   Details3,
-  Testimonial1,
-  Testimonial2,
-  Testimonial3,
-  Testimonial4,
-  Testimonial5,
-  Testimonial6,
-  FeaturesIcon1,
-  FeaturesIcon2,
-  FeaturesIcon3,
-  FeaturesIcon4,
-  FeaturesIcon5,
-  FeaturesIcon6,
   MyDisclosure,
   Arrow,
   Button,
 } from "./Partials/Imports";
 import Carousel from "../Tools/Transition";
+import { data } from "../Data/Data";
 
 export default function Index() {
-  const card = [
-    {
-      icon: <FeaturesIcon1 />,
-      title: "Platform Integration",
-      description:
-        "You sales force can use the app on any smartphone platform without compatibility issues",
-    },
-    {
-      icon: <FeaturesIcon2 />,
-      title: "Easy On Resources",
-      description:
-        "Works smoothly even on older generation hardware due to our optimization efforts",
-    },
-    {
-      icon: <FeaturesIcon3 />,
-      title: "Great Performance",
-      description:
-        "Optimized code and innovative technology insure no delays and ultra-fast responsiveness",
-    },
-    {
-      icon: <FeaturesIcon4 />,
-      title: "Multiple Languages",
-      description:
-        "Choose from one of the 40 languages that come pre-installed and start selling smarter",
-    },
-    {
-      icon: <FeaturesIcon5 />,
-      title: "Free Updates",
-      description:
-        "Don't worry about future costs, pay once and receive all future updates at no extra cost",
-    },
-    {
-      icon: <FeaturesIcon6 />,
-      title: "Community Support",
-      description:
-        "Register the app and get acces to knowledge and ideas from the Pavo online community",
-    },
-  ];
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 945);
+  // Set initial state for isMobile based on the window width
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1020);
 
-
-  const users = [
-    {
-      image: Testimonial1,
-      name: "Jude Thorn - Designer",
-      description:
-        "It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great",
-    },
-    {
-      image: Testimonial2,
-      name: "Roy Smith - Developer",
-      description:
-        "We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers",
-    },
-    {
-      image: Testimonial3,
-      name: "Marsha Singer - Marketer",
-      description:
-        "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy",
-    },
-    {
-      image: Testimonial4,
-      name: "Tim Shaw - Designer",
-      description:
-        "We've been waiting for a powerful piece of software that can help businesses manage their marketing projects",
-    },
-    {
-      image: Testimonial5,
-      name: "Lindsay Spice - Marketer",
-      description:
-        "Searching for a great prototyping and layout design app was difficult but thankfully I found app suite quickly",
-    },
-    {
-      image: Testimonial6,
-      name: "Ann Blake - Developer",
-      description:
-        "The app support team is amazing. They've helped me with some issues and I am so grateful to the entire team",
-    },
-  ];
-
+  // Update isMobile state on window resize
   useEffect(() => {
+    // Event handler to update isMobile based on the current window width
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1020);
     };
 
+    // Attach the resize event listener when the component mounts
     window.addEventListener("resize", handleResize);
+
+    // Remove the event listener when the component unmounts to avoid memory leaks
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   return (
     <>
-      <section className={`relative ${isMobile ? "top-[300px]" : ""} `}>
+      <section className={`relative ${isMobile && "top-14"} `}>
         <article className="mt-12 mb-32 text-center px-4 xl:px-4">
           <h1 className="lg:max-w-5xl text-3xl mx-auto ">
             Team management mobile apps don’t get better than Pavo. It’s
@@ -123,7 +39,7 @@ export default function Index() {
           </h1>
         </article>
         <section className={`flex flex-wrap justify-center mx-auto px-8`}>
-          {card.map((item, index) => (
+          {data.Cards.map((item, index) => (
             <article
               key={index}
               className={`flex flex-col mb-8 ${
@@ -137,9 +53,7 @@ export default function Index() {
           ))}
         </section>
       </section>
-      <section
-        className={`relative ${isMobile ? "top-[300px]" : ""} space-y-16`}
-      >
+      <section className={`relative ${isMobile && "top-24"} space-y-16`}>
         <section className="lg:grid grid-cols-12 gap-x-12 2xl:mx-40 flex flex-wrap items-center justify-center sm:px-12">
           <article className="lg:col-span-5 lg:mx-0 px-4 sm:mx-10">
             <h3 className="font-bold text-4xl my-2 ">
@@ -223,45 +137,35 @@ export default function Index() {
       </section>
       <section
         className={`relative ${
-          isMobile ? "top-[300px]" : ""
+          isMobile && "top-24"
         } px-8 flex flex-col justify-center items-center my-12 space-y-16`}
       >
         <section className="w-fit flex flex-wrap items-center justify-center">
-          <article className={`sm:px-8 px-4`}>
-            <h2 className="font-bold text-6xl my-2 text-center">231</h2>
-            <p className="text-sm text-gray-500 text-center">Happy Users</p>
-          </article>
-          <article className={`sm:px-8 px-4`}>
-            <h2 className="font-bold text-6xl my-2 text-center">385</h2>
-            <p className="text-sm text-gray-500 text-center">Issues Solved</p>
-          </article>
-          <article className={`sm:px-8 px-4`}>
-            <h2 className="font-bold text-6xl my-2 text-center">159</h2>
-            <p className="text-sm text-gray-500 text-center">Good Reviews</p>
-          </article>
-          <article className={`sm:px-8 px-4`}>
-            <h2 className="font-bold text-6xl my-2 text-center">127</h2>
-            <p className="text-sm text-gray-500 text-center">Case Studies</p>
-          </article>
-          <article className={`sm:px-8 px-4`}>
-            <h2 className="font-bold text-6xl my-2 text-center">211</h2>
-            <p className="text-sm text-gray-500 text-center">Orders Received</p>
-          </article>
+          {data.Stats.map((item) => (
+            <article className={`sm:px-8 px-4`}>
+              <h2 className="font-bold text-6xl my-2 text-center">
+                {item.number}
+              </h2>
+              <p className="text-sm text-gray-500 text-center">{item.label}</p>
+            </article>
+          ))}
         </section>
-        <section className="w-full">
+        <section className={`w-full ${isMobile && "pb-24"}`}>
           <Carousel
-            items={users}
-            renderItem={(user) => (
-              <article className="flex flex-col w-[300px] items-center space-y-4">
+            itemsPerRow={3}
+            scroll={1}
+            items={data.Users}
+            renderItem={({ image, description, name }) => (
+              <article className="flex  flex-col w-[300px] items-center space-y-4">
                 <img
                   className="rounded-full w-24 h-24"
-                  src={user.image}
+                  src={image}
                   alt={`testimonial ` + 1}
                 />
                 <p className="italic text-center text-gray-500">
-                  "{user.description}"
+                  "{description}"
                 </p>
-                <h4 className="font-bold text-xl text-center">{user.name}</h4>
+                <h4 className="font-bold text-xl text-center">{name}</h4>
               </article>
             )}
           />
@@ -276,7 +180,6 @@ export default function Index() {
         buttonStyle={`bg-[#dfdcf7] text-[#eb427e]`}
         panelStyle={`shadow`}
       />
-      {/* Footer */}
     </>
   );
 }
