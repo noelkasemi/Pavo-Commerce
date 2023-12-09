@@ -252,7 +252,7 @@ export default function Form({ type, navigateTo }) {
           {/* Forget Password Link (Visible for login form only) */}
           {type === "login" && (
             <a href="#" className="text-xs text-purple-600 hover:underline">
-              Forget Password?
+              Forgot Password?
             </a>
           )}
 
