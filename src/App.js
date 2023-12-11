@@ -1,6 +1,6 @@
 // Import React components
 import Index from "./Page/index";
-import Form from "./Tools/Form";
+import Form from "./Tools/Form/Form";
 import Header from "./Page/Partials/Header";
 import Footer from "./Page/Partials/Footer";
 import Privacy from "./Page/Privacy";
