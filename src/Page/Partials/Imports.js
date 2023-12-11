@@ -46,6 +46,15 @@ import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
 import Button from '../Partials/Button'
 import Lines from '../../assets/Svg/3Lines'
+import BlackCard from '../../assets/Svg/BlackCard'
+import DoubleCards from '../../assets/Svg/doubleCards'
+import Money from '../../assets/Svg/money'
+import Restart from '../../assets/Svg/Restart'
+import Star from '../../assets/Svg/star'
+import CreditCard from '../../assets/Svg/CreditCard'
+import Cart from '../../assets/Svg/Cart'
+import Heart from '../../assets/Svg/Heart'
+
  
 export {
   React,
@@ -99,5 +108,13 @@ export {
   UsFlag,
   AlbFlag,
   Button,
-  Lines
+  Lines,
+  DoubleCards,
+  BlackCard,
+  Money,
+  Restart,
+  Star,
+  CreditCard,
+  Cart,
+  Heart
 };

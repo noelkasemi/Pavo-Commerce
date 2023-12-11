@@ -211,7 +211,7 @@ const ProductDetails = ({ product, navigateBack, navigateTo }) => {
           <p className="font-semibold text-sm border-t-2 pt-2 w-full">
             Secure Payments
           </p>
-          <article className="flex flex-col sm:flex-row justify-between px-4">
+          <article className="flex flex-col  sm:flex-row justify-between space-y-2 lg:space-y-0 px-4">
             <p className="flex items-center font-semibold text-sm">
               <Money style={`bg-[#fcede9] p-2 w-9 h-9 mr-2 text-[#e65228]`} />{" "}
               Pay Cash

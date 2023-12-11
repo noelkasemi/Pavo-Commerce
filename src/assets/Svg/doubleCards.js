@@ -1,6 +1,6 @@
 import React from "react";
 
-function Icon({style}) {
+function DoubleCards({style}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +32,4 @@ function Icon({style}) {
   );
 }
 
-export default Icon;
+export default DoubleCards;
