@@ -1,7 +1,7 @@
 // imports.js
 
 import React from "react";
-import { Dialog, Transition, Listbox, Disclosure, Switch, Popover } from "@headlessui/react";
+import { Dialog, Transition, Listbox, Disclosure, Switch, Popover, Tab } from "@headlessui/react";
 import Tooltip from "../../Tools/Tooltip";
 import Arrow from "../../assets/Svg/arrow";
 import InfoIcon from "../../assets/Svg/InfoIcon";
@@ -19,6 +19,7 @@ import CheckIcon from "../../assets/Svg/CheckIcon";
 import Logo from "../../assets/Svg/logo.svg";
 import HeaderSmartphone from "../../assets/Images/header-smartphone.png";
 import ConclusionSmartphone from "../../assets/Images/conclusion-smartphone.png";
+import ConclusionBackground from "../../assets/Images/conclusion-background.jpg";
 import Details1 from "../../assets/Images/details-1.jpg";
 import Details2 from "../../assets/Images/details-2.jpg";
 import Details3 from "../../assets/Images/details-3.jpg";
@@ -45,6 +46,13 @@ import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
 import Button from '../Partials/Button'
 import Lines from '../../assets/Svg/3Lines'
+import Star from '../../assets/Svg/star'
+import CreditCard from "../../assets/Svg/CreditCard";
+import Money from "../../assets/Svg/money";
+import Heart from "../../assets/Svg/Heart";
+import Cart from '../../assets/Svg/Cart'
+import DoubleCards from '../../assets/Svg/doubleCards'
+import BlackCard from '../../assets/Svg/BlackCard'
  
 export {
   React,
@@ -98,5 +106,14 @@ export {
   UsFlag,
   AlbFlag,
   Button,
-  Lines
+  Lines,
+  Tab,
+  Star,
+  CreditCard,
+  Money,
+  Heart,
+  Cart,
+  DoubleCards,
+  BlackCard,
+  ConclusionBackground
 };

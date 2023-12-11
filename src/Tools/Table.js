@@ -1,6 +1,11 @@
-import {React, useState, TrashIcon, PencilIcon} from '../Page/Partials/Imports'
+import {
+  React,
+  useState,
+  TrashIcon,
+  PencilIcon,
+} from "../Page/Partials/Imports";
 
-const Table = ({ style }) => {
+const Table = ({ style, actions = false }) => {
   const initialData = [
     { id: 1, name: "John Doe", age: 25, ship: "yes", salary: "20k" },
     { id: 2, name: "Jane Doe", age: 30, ship: "no", salary: "45k" },
@@ -60,7 +65,7 @@ const Table = ({ style }) => {
     const updatedData = tableData.map((row) =>
       row.id === editId
         ? { ...row, name: editName, age: editAge, ship: ship, salary: salary }
-        : row,
+        : row
     );
 
     setTableData(updatedData);
@@ -81,7 +86,7 @@ const Table = ({ style }) => {
 
   return (
     <section className="container mx-auto p-4">
-      <article className="flex sm:flex-row flex-col h-auto w-auto justify-center items-center flex-wrap">
+    { actions &&  <article className="flex sm:flex-row flex-col h-auto w-auto justify-center items-center flex-wrap">
         <input
           className="border border-slate-400 rounded h-full py-2 px-2 sm:mb-0 mb-2"
           type="text"
@@ -120,7 +125,7 @@ const Table = ({ style }) => {
         >
           Add
         </button>
-      </article>
+      </article>}
       <table className="mt-4 table-auto w-full">
         <thead className={`${style}`}>
           <tr>
@@ -129,7 +134,7 @@ const Table = ({ style }) => {
                 {key.charAt(0).toUpperCase() + key.slice(1)}
               </th>
             ))}
-            <th className="px-4 py-2 flex">Actions</th>
+            {actions && <th className="px-4 py-2 flex">Actions</th>}
           </tr>
         </thead>
         <tbody className="">
@@ -184,43 +189,45 @@ const Table = ({ style }) => {
                   row.salary
                 )}
               </td>
-              <td className={`py-4 flex px-4 space-x-2 ${style}`}>
-                {editId === row.id ? (
-                  <>
-                    <button
-                      className="text-green-500"
-                      onClick={() => saveEdit()}
-                    >
-                      Save
-                    </button>
-                    <button
-                      className="text-red-500"
-                      onClick={() => cancelEdit()}
-                    >
-                      Undo
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <PencilIcon
-                      style="text-blue-500"
-                      onClick={() =>
-                        startEdit(
-                          row.id,
-                          row.name,
-                          row.age,
-                          row.ship,
-                          row.salary,
-                        )
-                      }
-                    />
-                    <TrashIcon
-                      style="text-red-500"
-                      onClick={() => deleteRow(row.id)}
-                    />
-                  </>
-                )}
-              </td>
+              {actions && (
+                <td className={`py-4 flex px-4 space-x-2 ${style}`}>
+                  {editId === row.id ? (
+                    <>
+                      <button
+                        className="text-green-500"
+                        onClick={() => saveEdit()}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="text-red-500"
+                        onClick={() => cancelEdit()}
+                      >
+                        Undo
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <PencilIcon
+                        style="text-blue-500"
+                        onClick={() =>
+                          startEdit(
+                            row.id,
+                            row.name,
+                            row.age,
+                            row.ship,
+                            row.salary
+                          )
+                        }
+                      />
+                      <TrashIcon
+                        style="text-red-500"
+                        onClick={() => deleteRow(row.id)}
+                      />
+                    </>
+                  )}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

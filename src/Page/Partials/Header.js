@@ -111,7 +111,14 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
                     Recepies
                   </a>
                 </li>
-                <li></li>
+                <li>
+                <a
+                    onClick={() => navigateTo("products")}
+                    className="nav-link cursor-pointer page-scroll hover:text-[#ff6f85]"
+                  >
+                    Products
+                  </a>
+                </li>
               </ul>
 
               <button
@@ -148,10 +155,11 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
         className={` header ${
           currentPage === "signup" ||
           currentPage === "login" ||
-          currentPage === "contact"
+          currentPage === "contact" ||
+          currentPage === 'products'
             ? "pt-0 pb-0"
             : "xl:pt-44 xl:pb-2 md:pt-36 py-2"
-        }  text-center  lg:text-left `}
+        }  text-center  lg:text-left ` }
       >
         {/* end of container */}
       </header>

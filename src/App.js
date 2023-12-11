@@ -8,7 +8,8 @@ import Terms from "./Page/Terms";
 import Articles from "./Page/Articles";
 import { useState } from "react";
 import Main from "./Page/RecepiePage/main";
-import RecepieDetails from "./Page/RecepiePage/RecepieDetails";
+import ProductDetails from "./Page/RecepiePage/ProductDetails";
+import ProductGrid from "./Page/RecepiePage/ProductGrid";
 
 export default function App() {
   // State to check which page is and should be rendered
@@ -16,6 +17,8 @@ export default function App() {
   const [currentLang, setCurrentLang] = useState("English");
   const [showRecipePage, setShowRecipePage] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [productPage, setProductPage] = useState(false);
 
   // Function to change the language of the page
   const changeLangTo = (lang) => {
@@ -34,6 +37,11 @@ export default function App() {
     setShowRecipePage(true);
   };
 
+  const navigateToProductDetails = (product) => {
+    setSelectedProduct(product);
+    setProductPage(true);
+  };
+
   // Object mapping page names to their corresponding components
   const pageComponents = {
     home: <Index />,
@@ -43,12 +51,16 @@ export default function App() {
     terms: <Terms />,
     articles: <Articles />,
     contact: <Form type="contact" />,
-    recepie: !showRecipePage ? (
+    recepie: !showRecipePage && (
       <Main navigateToDetails={navigateToDetails} currentLang={currentLang} />
+    ),
+    products: !productPage ? (
+      <ProductGrid navigateTo={navigateToProductDetails} />
     ) : (
-      <RecepieDetails
-        recepie={selectedRecipe}
-        navigateBack={() => setShowRecipePage(false)}
+      <ProductDetails
+      navigateTo={navigateToProductDetails}
+        product={selectedProduct}
+        navigateBack={() => setProductPage(false)}
       />
     ),
   };

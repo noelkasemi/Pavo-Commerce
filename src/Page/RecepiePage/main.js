@@ -422,7 +422,6 @@ const Main = ({ navigateToDetails, currentLang }) => {
                     </article>
                   ) : isUserView ? (
                     <Bookmark
-                      fill={`hover:gray`}
                       style={`text-[#AAAAAA] absolute translate-x-28 -translate-y-[25px]`}
                     />
                   ) : (
