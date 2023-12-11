@@ -40,7 +40,9 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
       {/* Navigation */}
       <nav className="navbar z-30 bg-white shadow w-full fixed">
         <section className=" w-full py-4 sm:px-4 lg:px-8 flex flex-wrap items-center  ">
-          <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer">
+          <a
+            onClick={() => navigateTo("home")}
+            className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer">
             <img src={Logo} alt="alternative" className="h-8" />
           </a>
 
@@ -136,7 +138,7 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
               <MyListbox
                 selectedValue={selected}
                 setSelectedValue={setSelected}
-                children={<Arrow style={`w-3 h-3 ml-[1px]`} />}
+                children={<Arrow style={`w-3 h-3 ml-[1px]`} type="down" />}
                 onClick={() => changeLangTo(selected)}
                 listData={languages}
                 style={`right-7 top-12`}

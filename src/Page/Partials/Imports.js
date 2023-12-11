@@ -36,7 +36,7 @@ import FeaturesIcon3 from "../../assets/Svg/features-icon-3";
 import FeaturesIcon4 from "../../assets/Svg/features-icon-4";
 import FeaturesIcon5 from "../../assets/Svg/features-icon-5";
 import FeaturesIcon6 from "../../assets/Svg/features-icon-6";
-import MyDisclosure from "../../Tools/Disclosure";
+import MyDisclosure from "../../Tools/Disclosure/MyDisclosure";
 import ArticleDetailsLarge from "../../assets/Images/article-details-large.jpg";
 import ArticleDetailsSmall from "../../assets/Images/article-details-small.jpg";
 import Moon from "../../assets/Svg/moon";
@@ -46,13 +46,6 @@ import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
 import Button from '../Partials/Button'
 import Lines from '../../assets/Svg/3Lines'
-import Star from '../../assets/Svg/star'
-import CreditCard from "../../assets/Svg/CreditCard";
-import Money from "../../assets/Svg/money";
-import Heart from "../../assets/Svg/Heart";
-import Cart from '../../assets/Svg/Cart'
-import DoubleCards from '../../assets/Svg/doubleCards'
-import BlackCard from '../../assets/Svg/BlackCard'
  
 export {
   React,
@@ -106,14 +99,5 @@ export {
   UsFlag,
   AlbFlag,
   Button,
-  Lines,
-  Tab,
-  Star,
-  CreditCard,
-  Money,
-  Heart,
-  Cart,
-  DoubleCards,
-  BlackCard,
-  ConclusionBackground
+  Lines
 };

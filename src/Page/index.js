@@ -150,10 +150,10 @@ export default function Index() {
             </article>
           ))}
         </section>
-        <section className={`w-full ${isMobile && "pb-24"}`}>
+        <section className={`w-full ${isMobile && "pb-14"}`}>
           <Carousel
-            itemsPerRow={3}
-            scroll={1}
+            itemsPerRow={4}
+            scroll={3}
             items={data.Users}
             renderItem={({ image, description, name }) => (
               <article className="flex  flex-col w-[300px] items-center space-y-4">
@@ -172,13 +172,13 @@ export default function Index() {
         </section>
       </section>
       <MyDisclosure
-        buttonChildren={`What is your refund policy?`}
-        children={` If you're unhappy with your purchase for any reason, email us
-                within 90 days and we'll refund you in full, no questions asked.`}
-        buttonChildren2={`Do you offer technical support?`}
-        children2={`Yes`}
-        buttonStyle={`bg-[#dfdcf7] text-[#eb427e]`}
-        panelStyle={`shadow`}
+        buttonChildren="What is your refund policy?"
+        children="If you're unhappy with your purchase for any reason, email us
+                within 90 days and we'll refund you in full, no questions asked."
+        buttonChildren2="Do you offer technical support?"
+        children2="Yes"
+        buttonStyle="bg-[#dfdcf7] text-[#eb427e]"
+        panelStyle="shadow"
       />
     </>
   );
