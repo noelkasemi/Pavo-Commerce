@@ -54,6 +54,9 @@ import Star from '../../assets/Svg/star'
 import CreditCard from '../../assets/Svg/CreditCard'
 import Cart from '../../assets/Svg/Cart'
 import Heart from '../../assets/Svg/Heart'
+import ZARA from '../../assets/Images/ZARA.jpg'
+import tiffany from '../../assets/Images/tiffany-co.jpg'
+import Razer from '../../assets/Images/Razer-Symbol.jpg'
 
  
 export {
@@ -116,5 +119,8 @@ export {
   Star,
   CreditCard,
   Cart,
-  Heart
+  Heart,
+  ZARA,
+  tiffany,
+  Razer
 };

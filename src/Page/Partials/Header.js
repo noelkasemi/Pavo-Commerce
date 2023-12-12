@@ -7,28 +7,17 @@ import {
   MyListbox,
   Lines,
 } from "../Partials/Imports";
+import useResizeEffect from "../../Tools/ResizeEffect";
 
-export default function Header({ navigateTo, currentPage, changeLangTo }) {
+
+export default function Header({ navigateTo, currentPage, changeLangTo, style }) {
   const languages = ["English", "Albanian"];
-
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
   const [selected, setSelected] = useState(languages[0]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 945);
-
   // useEffect to handle side effects related to navigation changes
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1020);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [currentPage]); // This effect will run when currentPage changes
+  const isMobile = useResizeEffect()
+ // This effect will run when currentPage changes
 
   // scrolls to the top of the page when the navigation changes
   useEffect(() => {
@@ -107,10 +96,10 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
                 </li>
                 <li>
                   <a
-                    onClick={() => navigateTo("recepie")}
+                    onClick={() => navigateTo("shops")}
                     className="nav-link cursor-pointer page-scroll hover:text-[#ff6f85]"
                   >
-                    Recepies
+                    Shops
                   </a>
                 </li>
                 <li>
@@ -157,12 +146,12 @@ export default function Header({ navigateTo, currentPage, changeLangTo }) {
         className={` header ${
           currentPage === "signup" ||
           currentPage === "login" ||
-          currentPage === "contact" ||
-          currentPage === 'products'
+          currentPage === "contact" 
             ? "pt-0 pb-0"
-            : "xl:pt-44 xl:pb-2 md:pt-36 py-2"
-        }  text-center  lg:text-left ` }
+            : "xl:pt-28 xl:pb-2 md:pt-36 pt-24"
+        }  ${style} ` }
       >
+       
         {/* end of container */}
       </header>
       {/* end of header */}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
-import ReactImageZoom from 'react-image-zoom';
+
 
 
 import {

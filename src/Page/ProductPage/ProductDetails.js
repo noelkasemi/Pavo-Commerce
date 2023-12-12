@@ -9,7 +9,7 @@ import ImageGallery from "./ImageGallery";
 import Tabs from "../../Tools/Tab";
 import useResizeEffect from "../../Tools/ResizeEffect";
 
-const ProductDetails = ({ product, navigateBack, navigateTo }) => {
+const ProductDetails = ({ product, navigateTo }) => {
   const tabs = {
     Description: product.description,
     Details: <Table />,
@@ -81,13 +81,6 @@ const ProductDetails = ({ product, navigateBack, navigateTo }) => {
 
   return (
     <main className=" bg-[#f7f7f7] space-y-16 flex flex-col w-full items-center justify-center pt-20">
-      {/* Back button */}
-      <button
-        className="inline-flex rounded-md border border-transparent bg-blue-100 px-6 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        onClick={navigateBack}
-      >
-        Back
-      </button>
       <section className="flex flex-col items-center lg:flex-row rounded-lg w-full lg:w-4/5 p-4 shadow-lg">
         {/* Images of the product */}
         <ImageGallery

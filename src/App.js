@@ -7,18 +7,18 @@ import Privacy from "./Page/Privacy";
 import Terms from "./Page/Terms";
 import Articles from "./Page/Articles";
 import { useState } from "react";
-import RecepiePage from "./Page/ProductPage/RecepiePage";
 import ProductDetails from "./Page/ProductPage/ProductDetails";
 import ProductGrid from "./Page/ProductPage/ProductGrid";
+import Shops from "./Page/RecepiePage/Shops";
+import BreadCrumb from './Tools/BreadCrumb'
 
 export default function App() {
   // State to check which page is and should be rendered
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLang, setCurrentLang] = useState("English");
-  const [showRecipePage, setShowRecipePage] = useState(false);
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [productPage, setProductPage] = useState(false);
+  const [breadcrumbs, setBreadcrumbs] = useState([{ label: 'home' }]);
 
   // Function to change the language of the page
   const changeLangTo = (lang) => {
@@ -28,18 +28,30 @@ export default function App() {
   // Function to change the current page to the clicked one
   const navigateTo = (page) => {
     setCurrentPage(page);
-    setShowRecipePage(false);
-  };
+     // Update breadcrumbs when navigating to a new page
+     const isPageInBreadcrumbs = breadcrumbs.some((breadcrumb) => breadcrumb.label === page);
 
-  // Callback to show recipe details page
-  const navigateToDetails = (recipe) => {
-    setSelectedRecipe(recipe);
-    setShowRecipePage(true);
+     if (isPageInBreadcrumbs) {
+      // If the page is already in the breadcrumbs, truncate the array to remove duplicates
+      setBreadcrumbs((prevBreadcrumbs) => {
+        const index = prevBreadcrumbs.findIndex((breadcrumb) => breadcrumb.label === page);
+        return index !== -1 ? prevBreadcrumbs.slice(0, index + 1) : prevBreadcrumbs;
+      });
+    } else {
+      // If the page is not in the breadcrumbs, add it to the end
+      setBreadcrumbs((prevBreadcrumbs) => [...prevBreadcrumbs, { label: page }]);
+    } setProductPage(false)
   };
 
   const navigateToProductDetails = (product) => {
     setSelectedProduct(product);
-    setProductPage(true);
+     // Update breadcrumbs when navigating to product details
+     setBreadcrumbs((prevBreadcrumbs) => [
+      ...prevBreadcrumbs,
+      { label: `Product Details - ${ product.title}` },
+    ]);
+  
+     setProductPage(true);
   };
 
   // Object mapping page names to their corresponding components
@@ -51,16 +63,14 @@ export default function App() {
     terms: <Terms />,
     articles: <Articles />,
     contact: <Form type="contact" />,
-    recepie: !showRecipePage && (
-      <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
-    ),
+    shops:   <Shops navigateTo={navigateTo} />,
+      // <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
     products: !productPage ? (
       <ProductGrid navigateTo={navigateToProductDetails} />
     ) : (
       <ProductDetails
       navigateTo={navigateToProductDetails}
         product={selectedProduct}
-        navigateBack={() => setProductPage(false)}
       />
     ),
   };
@@ -77,7 +87,7 @@ export default function App() {
         changeLangTo={changeLangTo}
         currentPage={currentPage}
       />
-
+         <BreadCrumb breadcrumbs={breadcrumbs} navigateTo={navigateTo} />
       {/* Render the current page component */}
       {renderPage()}
 
