@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
+import ReactImageZoom from 'react-image-zoom';
+
+
 import {
   Details1,
   Details2,
@@ -28,8 +32,12 @@ export default function Index() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const props = {width: 400, height: 250, zoomWidth: 500, img: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"};
+  // ReactDOM.render(<ReactImageZoom {...props} />, document.getElementById('imgt'));
+  
   return (
     <>
+      <section id="imgt"></section>
       <section className={`relative ${isMobile && "top-14"} `}>
         <article className="mt-12 mb-32 text-center px-4 xl:px-4">
           <h1 className="lg:max-w-5xl text-3xl mx-auto ">

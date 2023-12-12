@@ -4,6 +4,7 @@ import ReactImageMagnify from "react-image-magnify";
 import Table from "../../Tools/Table";
 import { CreditCard, Star,Cart,Heart,ConclusionSmartphone,Money,DoubleCards,BlackCard,Details1} from "../Partials/Imports";
 import ProductGrid from "./ProductGrid";
+import ImageMagnifier from "../../Tools/ImageMagnifier"
 
 const ProductDetails = ({ product, navigateBack, navigateTo }) => {
   const tabs = {
@@ -133,21 +134,14 @@ const ProductDetails = ({ product, navigateBack, navigateTo }) => {
         ) :
          (
         //  Main image of the product with magnifying functionality
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: "",
-                isFluidWidth: true,
-                src: images[activeImageIndex],
-              },
-              largeImage: {
-                src: images[activeImageIndex],
-                width: 1200,
-                height: 800,
-              },
-            }}
-          />
-        )}
+          <section id="zoom" className="">
+            <ImageMagnifier
+              width={350}
+              src={images[activeImageIndex]}
+            />
+          </section>
+        )
+        }
             {/* number of images */}
         <p className="absolute bg-[#e8e8e8] py-2 px-8 left-2 sm:left-0 lg:left-44 font-semibold top-[267px] sm:top-44  rounded-lg">
           {activeImageIndex + 1}/{images.length}
