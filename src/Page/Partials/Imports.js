@@ -44,7 +44,7 @@ import Sun from "../../assets/Svg/Sun";
 import Table from "../../Tools/Table";
 import AlbFlag from '../../assets/Images/albania.png'
 import UsFlag from '../../assets/Images/usa.png'
-import Button from '../Partials/Button'
+import Button from '../../Tools/Button'
 import Lines from '../../assets/Svg/3Lines'
 import BlackCard from '../../assets/Svg/BlackCard'
 import DoubleCards from '../../assets/Svg/doubleCards'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductCard from './Products';
+import ProductCard from './ProductCard';
 
 const ProductGrid = ({ navigateTo, initialDisplayCount = 100, showSeeMore = false, style = '' }) => {
   const [products, setProducts] = useState([]);
