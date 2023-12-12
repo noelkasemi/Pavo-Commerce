@@ -149,8 +149,8 @@ export default function Index() {
         } px-8 flex flex-col justify-center items-center my-12 space-y-16`}
       >
         <section className="w-fit flex flex-wrap items-center justify-center">
-          {data.Stats.map((item) => (
-            <article className={`sm:px-8 px-4`}>
+          {data.Stats.map((item,index) => (
+            <article key={index} className={`sm:px-8 px-4`}>
               <h2 className="font-bold text-6xl my-2 text-center">
                 {item.number}
               </h2>

@@ -1,15 +1,15 @@
 // Import React components
 import Index from "./Page/index";
-import Form from "./Tools/Form";
+import Form from "./Tools/Form/Form";
 import Header from "./Page/Partials/Header";
 import Footer from "./Page/Partials/Footer";
 import Privacy from "./Page/Privacy";
 import Terms from "./Page/Terms";
 import Articles from "./Page/Articles";
 import { useState } from "react";
-import Main from "./Page/RecepiePage/main";
-import ProductDetails from "./Page/RecepiePage/ProductDetails";
-import ProductGrid from "./Page/RecepiePage/ProductGrid";
+import RecepiePage from "./Page/ProductPage/RecepiePage";
+import ProductDetails from "./Page/ProductPage/ProductDetails";
+import ProductGrid from "./Page/ProductPage/ProductGrid";
 
 export default function App() {
   // State to check which page is and should be rendered
@@ -52,7 +52,7 @@ export default function App() {
     articles: <Articles />,
     contact: <Form type="contact" />,
     recepie: !showRecipePage && (
-      <Main navigateToDetails={navigateToDetails} currentLang={currentLang} />
+      <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
     ),
     products: !productPage ? (
       <ProductGrid navigateTo={navigateToProductDetails} />
