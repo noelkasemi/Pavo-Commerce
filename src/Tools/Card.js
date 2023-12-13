@@ -16,6 +16,7 @@ export default function ({
   btnClick,
   title,
   image,
+  navigateTo
 }) {
   return (
     <article
@@ -42,7 +43,7 @@ export default function ({
           {btnText}
           {btnIcon && <span className={`${btnIconStyle} ml-2`}>{btnIcon}</span>}
         </Button>
-        <Heart  style={`cursor-pointer w-9 h-9`} />
+        <Heart navigateTo={navigateTo} style={`cursor-pointer w-9 h-9`} />
       </article>
     </article>
   );

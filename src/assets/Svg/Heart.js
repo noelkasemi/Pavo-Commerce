@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-export default function Heart({ style, }) {
+export default function Heart({ style, navigateTo}) {
     const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
   
   return (
     <svg
-    onClick={() => setIsClicked(!isClicked)}
+    
+    onClick={() => {
+      setIsClicked(!isClicked);
+      navigateTo('login');
+    }}
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
     fill={

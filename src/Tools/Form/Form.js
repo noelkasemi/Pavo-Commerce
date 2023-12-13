@@ -3,9 +3,10 @@ import LoginForm from "./Login";
 import SignupForm from "./SignUp";
 import ContactForm from "./Contact";
 import { useState, useEffect } from "react";
+import ForgotPassword from "./ForgotPassword";
 
 const Form = ({ type, navigateTo }) => {
-  // State for trac password input
+  // State for track password input
   const [password, setPassword] = useState("");
   // state for tracking password errors
   const [passwordError, setPasswordError] = useState("");
@@ -17,6 +18,38 @@ const Form = ({ type, navigateTo }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   // State for tracking the selected file
   const [selectedFile, setSelectedFile] = useState(null);
+
+  //State to track email input
+  const [email, setEmail] = useState("");
+  //State to track email error
+  const [emailError, setEmailError] = useState("");
+  //State to track email confirmation
+  const [emailConfirmation, setEmailConfirmation] = useState("");
+  //State for checking if emails match
+  const [emailConfirmationError, setEmailConfirmationError] = useState("");
+
+  //Handles email input and changes the state based on what's inputed
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value
+    setEmail(newEmail)
+  }
+
+  //Handles email confirmation and changes the state based on whats inputed
+  const handleEmailConfirmationChange = (e) => {
+    const newEmailConfirmation = e.target.value
+    setEmailConfirmation(newEmailConfirmation)
+  }
+
+  useEffect(() => {
+    if (formSubmitted) {
+      // Validates email if it's the same as email confirmation
+      if (emailConfirmation && email !== emailConfirmation) {
+        setEmailConfirmationError("Email confirmation does not match");
+      } else {
+        setEmailConfirmationError("");
+      }
+    }
+  }, [formSubmitted, email, emailConfirmation]);
 
   // Handles password input and changes the state based on whats inputed
   const handlePasswordChange = (e) => {
@@ -37,13 +70,13 @@ const Form = ({ type, navigateTo }) => {
 
   useEffect(() => {
     if (formSubmitted) {
-       // Validates password length after form submission
+      // Validates password length after form submission
       if (password.length < 8) {
         setPasswordError("Password must be at least 8 characters");
       } else {
         // Password length is fine
         setPasswordError("");
-          // Validates password if its the same as password confirmation
+        // Validates password if its the same as password confirmation
         if (passwordConfirmation && password !== passwordConfirmation) {
           setConfirmationError("Password confirmation does not match");
           //Both passwords match
@@ -53,20 +86,19 @@ const Form = ({ type, navigateTo }) => {
       }
     }
   }, [formSubmitted, password, passwordConfirmation]);
-  
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Set the formSubmitted flag to true on form submission
     setFormSubmitted(true);
     //resets form if no errors
-    if (passwordError === "" && passwordConfirmation === "") {
+    if (passwordError === "" && passwordConfirmation === "" || emailError === '' && emailConfirmationError === '') {
       setPassword("");
       setPasswordConfirmation("");
+      setEmailError('')
+      setEmailConfirmationError('')
     }
   };
-
 
   return (
     <section className="relative flex flex-col bg-[#eeecee] justify-center min-h-screen overflow-hidden">
@@ -79,6 +111,8 @@ const Form = ({ type, navigateTo }) => {
             ? "Contact Us"
             : type === "signup"
             ? "Sign Up"
+            : type === "forgotPassword"
+            ? "Forgot Password"
             : "Login"}
         </h1>
         {type === "login" && (
@@ -99,6 +133,17 @@ const Form = ({ type, navigateTo }) => {
           <ContactForm
             handleSubmit={handleSubmit}
             handleFileChange={handleFileChange}
+          />
+        )}
+        {type === "forgotPassword" && (
+          <ForgotPassword
+            handleEmailChange={handleEmailChange}
+            handleEmailConfirmationChange={handleEmailConfirmationChange}
+            email={email}
+            emailError={emailError}
+            emailConfirmationError={emailConfirmationError}
+            navigateTo={navigateTo}
+            emailConfirmation={emailConfirmation}
           />
         )}
       </form>

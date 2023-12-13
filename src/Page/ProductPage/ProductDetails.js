@@ -109,6 +109,7 @@ const ProductDetails = ({ product, navigateTo }) => {
           save={save}
           tax={tax}
           code={code}
+          navigateTo={navigateTo}
         />
       </section>
       {/* Description */}

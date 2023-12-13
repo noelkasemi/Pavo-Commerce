@@ -3,11 +3,12 @@ import React from "react";
 import Card from "../../Tools/Card";
 import Text from "../../Tools/Text";
 
-const ProductCard = ({ product, onClick }) => {
+const ProductCard = ({ product, onClick, navigateTo }) => {
   const discount = (product.price / 100) * 50;
 
   return (
     <Card
+      navigateTo={navigateTo}
       onClick={() => onClick(product)}
       btnText="Add to Cart"
       title={product.title}

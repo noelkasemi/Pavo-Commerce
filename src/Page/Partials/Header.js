@@ -9,6 +9,7 @@ import {
   Button,
 } from "../Partials/Imports";
 import useResizeEffect from "../../Tools/ResizeEffect";
+import Sidebar from "./Sidebar";
 
 export default function Header({
   navigateTo,
@@ -23,6 +24,9 @@ export default function Header({
   // useEffect to handle side effects related to navigation changes
   const isMobile = useResizeEffect();
   // This effect will run when currentPage changes
+
+  //State to track if item is shown and when it will be shown
+  const [show, setShow] = useState(false)
 
   // scrolls to the top of the page when the navigation changes
   useEffect(() => {
@@ -53,8 +57,10 @@ export default function Header({
             <img src={Logo} alt="alternative" className="h-8" />
           </a>
 
-          {isMobile ? (
-            <Lines style={`ml-auto w-10 h-10 cursor-pointer`} />
+          {isMobile ? (<>
+            <Lines onClick={() => setShow(!show)} style={`ml-auto w-10 h-10 cursor-pointer`} />
+            {show && <Sidebar navigateTo={navigateTo} onClick={() => setShow(!show)} show={show} navItems={navItems} buttons={buttons} drop={drop} />}
+            </>
           ) : (
             <section
               className=" space-x-6 flex flex-grow items-center justify-end "
@@ -143,7 +149,8 @@ export default function Header({
         className={` header ${
           currentPage === "signup" ||
           currentPage === "login" ||
-          currentPage === "contact"
+          currentPage === "contact" ||
+          currentPage === 'forgotPassword'
             ? "pt-0 pb-0"
             : "xl:pt-28 xl:pb-2 md:pt-36 pt-24"
         }  ${style} `}

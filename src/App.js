@@ -11,6 +11,7 @@ import ProductDetails from "./Page/ProductPage/ProductDetails";
 import ProductGrid from "./Page/ProductPage/ProductGrid";
 import Shops from "./Page/RecepiePage/Shops";
 import BreadCrumb from './Tools/BreadCrumb'
+import ForgotPasswordForm from "./Tools/Form/ForgotPassword";
 
 export default function App() {
   // State to check which page is and should be rendered
@@ -59,6 +60,7 @@ export default function App() {
     home: <Index />,
     signup: <Form navigateTo={navigateTo} type="signup" />,
     login: <Form navigateTo={navigateTo} type="login" />,
+    forgotPassword: <Form navigateTo={navigateTo} type='forgotPassword' />,
     privacy: <Privacy />,
     terms: <Terms />,
     articles: <Articles />,
@@ -66,7 +68,7 @@ export default function App() {
     shops:   <Shops navigateTo={navigateTo} />,
       // <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
     products: !productPage ? (
-      <ProductGrid navigateTo={navigateToProductDetails} />
+      <ProductGrid search={true} navigateTo={navigateToProductDetails} />
     ) : (
       <ProductDetails
       navigateTo={navigateToProductDetails}

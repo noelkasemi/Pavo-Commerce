@@ -1,5 +1,5 @@
 import { CreditCard, Star,Cart,Heart,Money,DoubleCards,BlackCard,} from "../Partials/Imports";
-const ProductInformation = ({ product, count, setCount, save, tax, code }) => {
+const ProductInformation = ({ product, count, setCount, save, tax, code, navigateTo }) => {
   return (
     <article className="space-y-4 lg:ml-5 lg:w-2/4">
       <h2 className="font-bold text-2xl font-serif">{product.title}</h2>
@@ -79,7 +79,7 @@ const ProductInformation = ({ product, count, setCount, save, tax, code }) => {
         </button>
         <button className="bg-white rounded hover:outline outline-1 p-4">
           {" "}
-          <Heart />
+          <Heart navigateTo={navigateTo} />
         </button>
       </article>
     </article>
