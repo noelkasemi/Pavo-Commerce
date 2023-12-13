@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Heart({ style }) {
+export default function Heart({ style, }) {
     const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
   

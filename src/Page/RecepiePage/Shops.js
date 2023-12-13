@@ -40,6 +40,7 @@ export default function Shops({ navigateTo }) {
             btnIconStyle={`w-3 h-3 ${hoveredShop === shop.name && ' transition ease-in-out durantion-500 translate-x-2'}`}
             btnEnter={() => handleHover(shop.name)}
             btnLeave={() => handleHover(null)}
+            btnStyle={`text-white`}
           />
         ))}
       </section>

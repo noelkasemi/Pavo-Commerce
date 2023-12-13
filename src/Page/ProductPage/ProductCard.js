@@ -12,6 +12,7 @@ const ProductCard = ({ product, onClick }) => {
       btnText="Add to Cart"
       title={product.title}
       image={product.image}
+      btnStyle={`text-white`}
       children={
         <>
           <Text text='-50%' position={'top left'} />

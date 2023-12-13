@@ -19,7 +19,7 @@ export default function ({
 }) {
   return (
     <article
-      className={`${cardStyle} bg-white  w-full p-4 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]`}
+      className={`${cardStyle} bg-white relative w-full p-4 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]`}
     >
       <img
         title={title}
@@ -42,7 +42,7 @@ export default function ({
           {btnText}
           {btnIcon && <span className={`${btnIconStyle} ml-2`}>{btnIcon}</span>}
         </Button>
-        <Heart style={`cursor-pointer w-9 h-9`} />
+        <Heart  style={`cursor-pointer w-9 h-9`} />
       </article>
     </article>
   );
