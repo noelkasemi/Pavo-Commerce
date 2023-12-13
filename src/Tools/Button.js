@@ -1,6 +1,14 @@
-
 export default function Button(props) {
-    return (
-        <button onMouseEnter={props.hover} onMouseLeave={props.leave} className={`${props.style}  rounded-full px-8 py-3 `}>{props.children}{props.text}</button>
-    )
+  return (
+    <button
+    key={props.key}
+    style={{ textTransform: 'capitalize' }}
+      onClick={props.onClick}
+      onMouseEnter={props.enter}
+      onMouseLeave={props.leave}
+      className={`${props.style} flex bg-blue-500 hover:bg-blue-400  px-4 py-2 rounded-lg `}
+    >
+      {props.text || props.children}
+    </button>
+  );
 }

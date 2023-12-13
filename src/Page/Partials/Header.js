@@ -6,24 +6,41 @@ import {
   Logo,
   MyListbox,
   Lines,
+  Button,
 } from "../Partials/Imports";
 import useResizeEffect from "../../Tools/ResizeEffect";
 
-
-export default function Header({ navigateTo, currentPage, changeLangTo, style }) {
+export default function Header({
+  navigateTo,
+  currentPage,
+  changeLangTo,
+  style,
+}) {
   const languages = ["English", "Albanian"];
   // State for tracking hover state of the tooltip
   const [isHovered, setIsHovered] = useState(false);
   const [selected, setSelected] = useState(languages[0]);
   // useEffect to handle side effects related to navigation changes
-  const isMobile = useResizeEffect()
- // This effect will run when currentPage changes
+  const isMobile = useResizeEffect();
+  // This effect will run when currentPage changes
 
   // scrolls to the top of the page when the navigation changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const buttons = [{ label: "login" }, { label: "signup" }];
+  const navItems = [
+    { label: "home" },
+    { label: "Drop" },
+    { label: "shops" },
+    { label: "products" },
+  ];
+  const drop = [
+    { label: "Article Details", navigate: "articles" },
+    { label: "Terms Condition", navigate: "terms" },
+    { label: "Privacy Policy", navigate: "privacy" },
+  ];
   return (
     <>
       {/* Navigation */}
@@ -31,7 +48,8 @@ export default function Header({ navigateTo, currentPage, changeLangTo, style })
         <section className=" w-full py-4 sm:px-4 lg:px-8 flex flex-wrap items-center  ">
           <a
             onClick={() => navigateTo("home")}
-            className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer">
+            className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer"
+          >
             <img src={Logo} alt="alternative" className="h-8" />
           </a>
 
@@ -43,87 +61,66 @@ export default function Header({ navigateTo, currentPage, changeLangTo, style })
               id="navbarsExampleDefault"
             >
               <ul className=" pl-0 mt-3 space-x-4 font-semibold mb-2  flex flex-col  lg:mt-0 lg:mb-0 lg:flex-row">
-                <li>
-                  <a
-                    onClick={() => navigateTo("home")}
-                    className="cursor-pointer hover:text-[#ff6f85]"
+                {navItems.map((item) => (
+                  <li
+                    key={item.label}
+                    onMouseEnter={() =>
+                      item.label === "Drop" && setIsHovered(true)
+                    }
+                    onMouseLeave={() =>
+                      item.label === "Drop" && setIsHovered(false)
+                    }
+                    className={`cursor-pointer hover:text-[#ff6f85] ${
+                      item.label === "Drop" && "flex"
+                    }`}
+                    style={{ textTransform: "capitalize" }}
+                    onClick={() =>
+                      item.label === "Drop" ? null : navigateTo(item.label)
+                    }
                   >
-                    Home
-                  </a>
-                </li>
-                <li className="dropdown ">
-                  <a
-                    className="nav-link  flex"
-                    id="dropdown01"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    <Tooltip
-                      show={isHovered}
-                      buttonChildren={
-                        <p className="flex text-sm items-center hover:text-[#ff6f85]">
-                          Drop <Arrow />
-                        </p>
-                      }
-                      panelStyle={`bg-white absolute px-2 py-2 rounded mt-2 w-44 shadow-lg`}
-                      children={
-                        <ul className="">
-                          <li
-                            onClick={() => navigateTo("articles")}
-                            className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
-                          >
-                            Article Details
-                          </li>
-                          <li
-                            onClick={() => navigateTo("terms")}
-                            className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] border-b px-2 py-4"
-                          >
-                            Terms Conditions
-                          </li>
-                          <li
-                            onClick={() => navigateTo("privacy")}
-                            className="cursor-pointer text-[#808f99] hover:text-[#ff6f85] py-4 px-2"
-                          >
-                            Privacy Policy
-                          </li>
-                        </ul>
-                      }
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={() => navigateTo("shops")}
-                    className="nav-link cursor-pointer page-scroll hover:text-[#ff6f85]"
-                  >
-                    Shops
-                  </a>
-                </li>
-                <li>
-                <a
-                    onClick={() => navigateTo("products")}
-                    className="nav-link cursor-pointer page-scroll hover:text-[#ff6f85]"
-                  >
-                    Products
-                  </a>
-                </li>
+                    {item.label === "Drop" ? (
+                      <Tooltip
+                        show={isHovered}
+                        buttonChildren={
+                          <p className="flex text-sm items-center hover:text-[#ff6f85]">
+                            Drop <Arrow />
+                          </p>
+                        }
+                        panelStyle={`bg-white absolute px-2 py-2 rounded mt-2 w-44 shadow-lg`}
+                        children={
+                          <ul>
+                            {drop.map((item) => (
+                              <li
+                                onClick={() => navigateTo(item.navigate)}
+                                className={`${
+                                  item.label === "Privacy Policy" ? "" : "border-b"
+                                } cursor-pointer text-[#808f99] hover:text-[#ff6f85]  px-2 py-4`}
+                              >
+                                {item.label}
+                              </li>
+                            ))}
+                          </ul>
+                        }
+                      />
+                    ) : (
+                      item.label
+                    )}
+                  </li>
+                ))}
               </ul>
+              {buttons.map((btn) => (
+                <Button
+                  key={btn.label}
+                  text={btn.label}
+                  style={`${
+                    btn.label === "signup"
+                      ? " hover:bg-neutral-200 bg-white border text-black"
+                      : "hover:bg-blue-700 text-white px-5"
+                  } font-semibold py-1 `}
+                  onClick={() => navigateTo(btn.label)}
+                />
+              ))}
 
-              <button
-                onClick={() => navigateTo("login")}
-                className="px-4 py-1 bg-blue-500 rounded-lg text-white font-semibold ml-4 hover:bg-blue-700"
-              >
-                Log In
-              </button>
-              <button
-                onClick={() => navigateTo("signup")}
-                className="px-4 py-1 border rounded-lg  font-semibold ml-4 hover:bg-neutral-200 bg-white"
-              >
-                Sign up
-              </button>
               <MyListbox
                 selectedValue={selected}
                 setSelectedValue={setSelected}
@@ -146,12 +143,11 @@ export default function Header({ navigateTo, currentPage, changeLangTo, style })
         className={` header ${
           currentPage === "signup" ||
           currentPage === "login" ||
-          currentPage === "contact" 
+          currentPage === "contact"
             ? "pt-0 pb-0"
             : "xl:pt-28 xl:pb-2 md:pt-36 pt-24"
-        }  ${style} ` }
+        }  ${style} `}
       >
-       
         {/* end of container */}
       </header>
       {/* end of header */}

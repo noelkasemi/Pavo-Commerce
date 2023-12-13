@@ -1,4 +1,5 @@
 import Heart from "../assets/Svg/Heart";
+import Button from "./Button";
 
 export default function ({
   onClick,
@@ -8,6 +9,11 @@ export default function ({
   imageStyle,
   titleStyle,
   btnStyle,
+  btnIcon,
+  btnIconStyle,
+  btnEnter,
+  btnLeave,
+  btnClick,
   title,
   image,
 }) {
@@ -27,11 +33,15 @@ export default function ({
       </h3>
       {children}
       <article className="mt-4 flex justify-between items-end">
-        <button
-          className={`${btnStyle} bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-lg`}
+        <Button
+          onClick={btnClick}
+          enter={btnEnter}
+          leave={btnLeave}
+          style={`${btnStyle}`}
         >
           {btnText}
-        </button>
+          {btnIcon && <span className={`${btnIconStyle} ml-2`}>{btnIcon}</span>}
+        </Button>
         <Heart style={`cursor-pointer w-9 h-9`} />
       </article>
     </article>
