@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainImage from "./MainImage";
 import Table from "../../Tools/Table";
 import { Star, ConclusionSmartphone, Details1 } from "../Partials/Imports";
@@ -10,6 +10,7 @@ import Tabs from "../../Tools/Tab";
 import useResizeEffect from "../../Tools/ResizeEffect";
 
 const ProductDetails = ({ product, navigateTo }) => {
+  
   const tabs = {
     Description: product.description,
     Details: <Table />,
@@ -19,7 +20,7 @@ const ProductDetails = ({ product, navigateTo }) => {
           {" "}
           <p className="flex text-2xl font-semibold text-[#e65228] items-center">
             {" "}
-            {product.rating.rate}
+            {product.rating.rate ? product.rating.rate : 0}
             <Star style={`w-7 h-7 ml-1`} />{" "}
           </p>
           <p className="text-sm">{product.rating.count} ratings </p>
@@ -79,6 +80,14 @@ const ProductDetails = ({ product, navigateTo }) => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   return (
     <main className=" bg-[#f7f7f7] space-y-16 flex flex-col w-full items-center justify-center pt-20">
       <section className="flex flex-col items-center lg:flex-row rounded-lg w-full lg:w-4/5 p-4 shadow-lg">
@@ -122,6 +131,7 @@ const ProductDetails = ({ product, navigateTo }) => {
           Similar products
         </p>
         <ProductGrid
+          
           navigateTo={navigateTo}
           style={` pt-0 `}
           showSeeMore={true}

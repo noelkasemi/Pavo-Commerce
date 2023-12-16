@@ -10,8 +10,9 @@ import { useState } from "react";
 import ProductDetails from "./Page/ProductPage/ProductDetails";
 import ProductGrid from "./Page/ProductPage/ProductGrid";
 import Shops from "./Page/RecepiePage/Shops";
-import BreadCrumb from './Tools/BreadCrumb'
+import BreadCrumb from "./Tools/BreadCrumb";
 import ForgotPasswordForm from "./Tools/Form/ForgotPassword";
+import ShopsProducts from "./Page/RecepiePage/ShopsProducts";
 
 export default function App() {
   // State to check which page is and should be rendered
@@ -19,40 +20,60 @@ export default function App() {
   const [currentLang, setCurrentLang] = useState("English");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [productPage, setProductPage] = useState(false);
-  const [breadcrumbs, setBreadcrumbs] = useState([{ label: 'home' }]);
-
+  const [breadcrumbs, setBreadcrumbs] = useState([{ label: "home" }]);
+  const [selectedShop, setSelectedShop] = useState(null);
+  console.log(selectedShop)
   // Function to change the language of the page
   const changeLangTo = (lang) => {
     setCurrentLang(lang);
   };
 
+  const navigateToShopProducts = (shopCategory) => {
+    setSelectedShop(shopCategory); // Update selectedShop when a shop is selected
+    setCurrentPage("shops"); // Navigate to the ShopProducts page
+    setBreadcrumbs((prevBreadcrumbs) => [
+      ...prevBreadcrumbs,
+      {label: shopCategory}
+    ])
+  };
+
   // Function to change the current page to the clicked one
   const navigateTo = (page) => {
     setCurrentPage(page);
-     // Update breadcrumbs when navigating to a new page
-     const isPageInBreadcrumbs = breadcrumbs.some((breadcrumb) => breadcrumb.label === page);
+    // Update breadcrumbs when navigating to a new page
+    const isPageInBreadcrumbs = breadcrumbs.some(
+      (breadcrumb) => breadcrumb.label === page
+    );
 
-     if (isPageInBreadcrumbs) {
+    if (isPageInBreadcrumbs) {
       // If the page is already in the breadcrumbs, truncate the array to remove duplicates
       setBreadcrumbs((prevBreadcrumbs) => {
-        const index = prevBreadcrumbs.findIndex((breadcrumb) => breadcrumb.label === page);
-        return index !== -1 ? prevBreadcrumbs.slice(0, index + 1) : prevBreadcrumbs;
+        const index = prevBreadcrumbs.findIndex(
+          (breadcrumb) => breadcrumb.label === page
+        );
+        return index !== -1
+          ? prevBreadcrumbs.slice(0, index + 1)
+          : prevBreadcrumbs;
       });
     } else {
       // If the page is not in the breadcrumbs, add it to the end
-      setBreadcrumbs((prevBreadcrumbs) => [...prevBreadcrumbs, { label: page }]);
-    } setProductPage(false)
+      setBreadcrumbs((prevBreadcrumbs) => [
+        ...prevBreadcrumbs,
+        { label: page },
+      ]);
+    }
+    setProductPage(false);
   };
 
   const navigateToProductDetails = (product) => {
     setSelectedProduct(product);
-     // Update breadcrumbs when navigating to product details
-     setBreadcrumbs((prevBreadcrumbs) => [
+    // Update breadcrumbs when navigating to product details
+    setBreadcrumbs((prevBreadcrumbs) => [
       ...prevBreadcrumbs,
-      { label: `Product Details - ${ product.title}` },
+      { label: `Product Details - ${product.title}` },
     ]);
-  
-     setProductPage(true);
+
+    setProductPage(true);
   };
 
   // Object mapping page names to their corresponding components
@@ -60,18 +81,23 @@ export default function App() {
     home: <Index />,
     signup: <Form navigateTo={navigateTo} type="signup" />,
     login: <Form navigateTo={navigateTo} type="login" />,
-    forgotPassword: <Form navigateTo={navigateTo} type='forgotPassword' />,
+    forgotPassword: <Form navigateTo={navigateTo} type="forgotPassword" />,
     privacy: <Privacy />,
     terms: <Terms />,
     articles: <Articles />,
     contact: <Form type="contact" />,
-    shops:   <Shops navigateTo={navigateTo} />,
-      // <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
+    shops:
+      currentPage === "shops" && selectedShop ? (
+        <ShopsProducts navigateTo={navigateToProductDetails} selectedShop={selectedShop} />
+      ) : (
+        <Shops navigateTo={navigateToShopProducts} />
+      ),
+    // <RecepiePage navigateToDetails={navigateToDetails} currentLang={currentLang} />
     products: !productPage ? (
       <ProductGrid search={true} navigateTo={navigateToProductDetails} />
     ) : (
       <ProductDetails
-      navigateTo={navigateToProductDetails}
+        navigateTo={navigateToProductDetails}
         product={selectedProduct}
       />
     ),
@@ -89,7 +115,7 @@ export default function App() {
         changeLangTo={changeLangTo}
         currentPage={currentPage}
       />
-         <BreadCrumb breadcrumbs={breadcrumbs} navigateTo={navigateTo} />
+      <BreadCrumb breadcrumbs={breadcrumbs} navigateTo={navigateTo} />
       {/* Render the current page component */}
       {renderPage()}
 

@@ -1,24 +1,10 @@
 import Card from "../../Tools/Card";
 import Chevron from "../../assets/Svg/Chevron";
-import { ZARA, tiffany, Razer, useState } from "../Partials/Imports";
+import {  useState,shopData } from "../Partials/Imports";
 
 export default function Shops({ navigateTo }) {
   const [hoveredShop, setHoveredShop] = useState(null)
-  const shopData = [
-    {
-      name: 'Zara',
-      image: ZARA
-    },
-    {
-      name: 'Tiffany & Co',
-      image: tiffany
-    },
-    {
-      name: 'Razer',
-      image: Razer
-    }
-  ];
-
+  const shops = shopData
   const handleHover = (shopName) => {
     setHoveredShop(shopName);
   };
@@ -28,11 +14,11 @@ export default function Shops({ navigateTo }) {
     <section>
       <h1 className="text-center font-serif font-semibold text-3xl mb-4 px-4 sm:px-0">Browse your favorite shops</h1>
       <section className="grid md:grid-cols-2 lg:grid-cols-3 w-full md:w-2/3 mx-auto gap-4">
-        {shopData.map(shop => (
+        {shops.map(shop => (
           <Card
             key={shop.name}
-            onClick={() => navigateTo('products')}
-            btnClick={() => navigateTo('products')}
+            onClick={() => navigateTo(shop.category)}
+            btnClick={() => navigateTo(shop.category)}
             image={shop.image}
             title={shop.name}
             btnText={`Visit shop`}

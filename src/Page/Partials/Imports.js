@@ -57,6 +57,8 @@ import Heart from '../../assets/Svg/Heart'
 import ZARA from '../../assets/Images/ZARA.jpg'
 import tiffany from '../../assets/Images/tiffany-co.jpg'
 import Razer from '../../assets/Images/Razer-Symbol.jpg'
+import Gucci from '../../assets/Images/web-183281700.jpg'
+import { shopData } from "../../Data/ShopData";
 
  
 export {
@@ -122,5 +124,7 @@ export {
   Heart,
   ZARA,
   tiffany,
-  Razer
+  Razer,
+  Gucci,
+  shopData
 };

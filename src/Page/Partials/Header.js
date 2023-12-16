@@ -95,8 +95,9 @@ export default function Header({
                         panelStyle={`bg-white absolute px-2 py-2 rounded mt-2 w-44 shadow-lg`}
                         children={
                           <ul>
-                            {drop.map((item) => (
+                            {drop.map((item, index) => (
                               <li
+                                key={index}
                                 onClick={() => navigateTo(item.navigate)}
                                 className={`${
                                   item.label === "Privacy Policy" ? "" : "border-b"
@@ -152,7 +153,7 @@ export default function Header({
           currentPage === "contact" ||
           currentPage === 'forgotPassword'
             ? "pt-0 pb-0"
-            : "xl:pt-28 xl:pb-2 md:pt-36 pt-24"
+            : "xl:pt-28 xl:pb-2 md:pt-24 pt-24"
         }  ${style} `}
       >
         {/* end of container */}

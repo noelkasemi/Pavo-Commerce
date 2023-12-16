@@ -8,7 +8,7 @@ export default function Heart({ style, navigateTo}) {
     <svg
     
     onClick={() => {
-      setIsClicked(!isClicked);
+      // setIsClicked(!isClicked);
       navigateTo('login');
     }}
     onMouseEnter={() => setIsHovered(true)}
