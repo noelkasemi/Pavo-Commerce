@@ -37,8 +37,7 @@ export default function Index() {
   
   return (
     <>
-      <section id="imgt"></section>
-      <section className={`relative ${isMobile && "top-14"} `}>
+      <section className={`relative mt-28 ${isMobile && "top-14 mt-0"} `}>
         <article className="mt-12 mb-32 text-center px-4 xl:px-4">
           <h1 className="lg:max-w-5xl text-3xl mx-auto ">
             Team management mobile apps don’t get better than Pavo. It’s

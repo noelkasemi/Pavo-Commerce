@@ -1,4 +1,4 @@
-// productUtils.js
+
 
 export const generateCode = (product) => {
     const min = 1000;

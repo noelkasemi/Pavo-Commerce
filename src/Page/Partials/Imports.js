@@ -59,6 +59,9 @@ import tiffany from '../../assets/Images/tiffany-co.jpg'
 import Razer from '../../assets/Images/Razer-Symbol.jpg'
 import Gucci from '../../assets/Images/web-183281700.jpg'
 import { shopData } from "../../Data/ShopData";
+import {data} from '../../Data/Data'
+import Sidebar from "./Sidebar";
+import { useNavigate } from "react-router-dom";
 
  
 export {
@@ -126,5 +129,8 @@ export {
   tiffany,
   Razer,
   Gucci,
-  shopData
+  shopData,
+  data,
+  Sidebar,
+  useNavigate
 };

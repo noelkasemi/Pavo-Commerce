@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = ({
   handleSubmit,
@@ -10,6 +11,7 @@ const ForgotPassword = ({
   emailError,
   emailConfirmationError,
 }) => {
+  const navigate = useNavigate()
   return (
     <>
       <label
@@ -62,7 +64,7 @@ const ForgotPassword = ({
       <p className="mt-8 text-xs font-light text-center text-gray-700">
         Remember your password?{" "}
         <button
-          onClick={() => navigateTo("login")}
+          onClick={() => navigate("/login")}
           className="font-medium text-purple-600 hover:underline"
         >
           Login

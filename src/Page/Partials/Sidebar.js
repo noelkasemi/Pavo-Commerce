@@ -1,9 +1,11 @@
 import { Transition } from "@headlessui/react";
 import Xicon from "../../assets/Svg/Xicon";
 import { Button } from "./Imports";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Sidebar({ navItems, drop, show, onClick, navigateTo }) {
+export default function Sidebar({ navItems, drop, show, onClick }) {
   const data = [...navItems, ...drop];
+  const navigate = useNavigate();
 
   return (
     <Transition
@@ -17,13 +19,13 @@ export default function Sidebar({ navItems, drop, show, onClick, navigateTo }) {
     >
       <section className="absolute sm:w-1/3 w-2/3 right-0 space-y-4 bg-[#e2e8f0] h-screen top-0">
         <p className="flex justify-between shadow p-2  bg-[#f1f5f9]">
-          <Xicon style={`w-11 h-11 cursor-pointer`} onClick={onClick} />
-          <span
-            onClick={() => navigateTo("login")}
+          <Xicon style={`w-11 h-11 mt-2 cursor-pointer`} onClick={onClick} />
+          <Link
+            to="/login"
             className="text-xl border-2 rounded-lg font-semibold cursor-pointer hover:brightness-90 px-4 py-2 bg-[#f1f5f9]"
           >
             Login
-          </span>
+          </Link>
         </p>
 
         {data.map(
@@ -35,8 +37,10 @@ export default function Sidebar({ navItems, drop, show, onClick, navigateTo }) {
                   item.label === "home" ||
                   item.label === "shops" ||
                   item.label === "products"
-                    ? navigateTo(item.label)
-                    : navigateTo(item.navigate)
+                    ? navigate(`/${item.label}`)
+                    : item.label === "home"
+                    ? navigate(`/`)
+                    : navigate(`/${item.navigate}`)
                 }
                 style={{ textTransform: "capitalize" }}
                 className="text-xl font-semibold cursor-pointer hover:brightness-90 px-4 py-2 bg-[#e2e8f0]"
@@ -47,7 +51,7 @@ export default function Sidebar({ navItems, drop, show, onClick, navigateTo }) {
             )
         )}
         <Button
-          onClick={() => navigateTo("signup")}
+          onClick={() => navigate("/signup")}
           text="Sign up"
           style={`text-white ml-4 translate-y-4`}
         />

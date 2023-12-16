@@ -111,4 +111,15 @@ export const data = {
       label: "Orders Received"
     }
   ],
+  drop: [
+    { label: "Article Details", navigate: "articles" },
+    { label: "Terms Condition", navigate: "terms" },
+    { label: "Privacy Policy", navigate: "privacy" },
+  ],
+  navItems: [
+    { label: "home" },
+    { label: "Drop" },
+    { label: "shops" },
+    { label: "products" },
+  ],
 };

@@ -1,24 +1,24 @@
 import Card from "../../Tools/Card";
 import Chevron from "../../assets/Svg/Chevron";
-import {  useState,shopData } from "../Partials/Imports";
+import {  useState,shopData, useNavigate } from "../Partials/Imports";
 
-export default function Shops({ navigateTo }) {
+export default function Shops({ }) {
   const [hoveredShop, setHoveredShop] = useState(null)
   const shops = shopData
   const handleHover = (shopName) => {
     setHoveredShop(shopName);
   };
-
+  const navigate = useNavigate()
 
   return (
-    <section>
+    <section className="mt-4">
       <h1 className="text-center font-serif font-semibold text-3xl mb-4 px-4 sm:px-0">Browse your favorite shops</h1>
       <section className="grid md:grid-cols-2 lg:grid-cols-3 w-full md:w-2/3 mx-auto gap-4">
         {shops.map(shop => (
           <Card
             key={shop.name}
-            onClick={() => navigateTo(shop.category)}
-            btnClick={() => navigateTo(shop.category)}
+            onClick={() => navigate(`/${shop.category}`)}
+            btnClick={() => navigate(`/${shop.category}`)}
             image={shop.image}
             title={shop.name}
             btnText={`Visit shop`}

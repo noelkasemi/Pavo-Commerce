@@ -8,9 +8,13 @@ import ProductInformation from "./ProductInformation";
 import ImageGallery from "./ImageGallery";
 import Tabs from "../../Tools/Tab";
 import useResizeEffect from "../../Tools/ResizeEffect";
+import { useLocation, useParams } from "react-router-dom";
 
-const ProductDetails = ({ product, navigateTo }) => {
-  
+const ProductDetails = ({ navigateTo }) => {
+  const location = useLocation()
+  console.log('Location State:', location.state);
+  const {product} = location.state || {}
+
   const tabs = {
     Description: product.description,
     Details: <Table />,

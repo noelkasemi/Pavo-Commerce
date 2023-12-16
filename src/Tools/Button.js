@@ -1,7 +1,7 @@
-export default function Button(props) {
+export default function Button(props, {key}) {
   return (
     <button
-    key={props.key}
+    key={key}
     style={{ textTransform: 'capitalize' }}
       onClick={props.onClick}
       onMouseEnter={props.enter}

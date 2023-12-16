@@ -2,6 +2,7 @@ import React from "react";
 import Tooltip from "../Tooltip";
 import { useState } from "react";
 import InfoIcon from '../../assets/Svg/InfoIcon';
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({
   handlePasswordChange,
@@ -14,7 +15,7 @@ const SignupForm = ({
 }) => {
         // State for tracking hover state of the tooltip
         const [isHovered, setIsHovered] = useState(false);
-
+        const navigate = useNavigate()
   return (
     <>
       <label
@@ -113,7 +114,7 @@ const SignupForm = ({
       <p className="mt-8 text-xs font-light text-center text-gray-700">
         Already have an account?{" "}
         <button
-          onClick={() => navigateTo("login")}
+          onClick={() => navigate("/login")}
           className="font-medium text-purple-600 hover:underline"
         >
           Login

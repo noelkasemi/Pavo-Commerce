@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ handleSubmit, navigateTo }) => {
+  const navigate = useNavigate()
   return (
     <>
       <label htmlFor="email" className="block text-sm font-semibold text-gray-800">
@@ -26,7 +28,7 @@ const LoginForm = ({ handleSubmit, navigateTo }) => {
         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
       />
 
-      <button onClick={() => navigateTo('forgotPassword')} className="text-xs text-purple-600 hover:underline">
+      <button onClick={() => navigate('/forgotPassword')} className="text-xs text-purple-600 hover:underline">
         Forgot Password?
       </button>
 
@@ -39,7 +41,7 @@ const LoginForm = ({ handleSubmit, navigateTo }) => {
 
       <p className="mt-8 text-xs font-light text-center text-gray-700">
         Don't have an account?{' '}
-        <button onClick={() => navigateTo('signup')} className="font-medium text-purple-600 hover:underline">
+        <button onClick={() => navigate('/signup')} className="font-medium text-purple-600 hover:underline">
           Sign Up
         </button>
       </p>
