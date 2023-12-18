@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const ProductFetcher = ({setProducts}) => {
+const ProductsFetcher = ({setProducts}) => {
     useEffect(() => {
         // Fetch products from the Fake Store API
         const fetchProducts = async () => {
@@ -18,4 +18,4 @@ const ProductFetcher = ({setProducts}) => {
       return null
 }
 
-export default ProductFetcher
+export default ProductsFetcher

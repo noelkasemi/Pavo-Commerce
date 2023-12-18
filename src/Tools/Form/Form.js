@@ -101,7 +101,7 @@ const Form = ({ type, navigateTo }) => {
   };
 
   return (
-    <section className="relative flex flex-col bg-[#eeecee] justify-center min-h-screen overflow-hidden">
+    <section className={`${type === 'signup' || type === 'contact' ? 'py-32' : ''} relative flex flex-col bg-[#eeecee] justify-center min-h-screen overflow-hidden`}>
       <form
         onSubmit={handleSubmit}
         className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl"

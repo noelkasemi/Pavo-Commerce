@@ -2,18 +2,19 @@
 import React from "react";
 import Card from "../../Tools/Card";
 import Text from "../../Tools/Text";
+import Cart from "../../assets/Svg/Cart";
 
-const ProductCard = ({ product, onClick, navigateTo }) => {
+const ProductCard = ({ product, onClick }) => {
   const discount = (product.price / 100) * 50;
 
   return (
     <Card
-      navigateTo={navigateTo}
+    btnIcon={<Cart style={`w-5 h-5`} />}
       onClick={() => onClick(product)}
-      btnText="Add to Cart"
+      btnText={`Add to Cart `}
       title={product.title}
       image={product.image}
-      btnStyle={`text-white`}
+      btnStyle={`text-white flex items-center`}
       children={
         <>
           <Text text='-50%' position={'top left'} />

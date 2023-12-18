@@ -10,6 +10,12 @@ export default function Shops({ }) {
   };
   const navigate = useNavigate()
 
+
+    // Function to navigate to ProductDetails with the selected product
+    const navigateToShopsProducts = (shop) => {
+      navigate(`/shop/${shop.category}`, { state: { shop } });
+    };
+   
   return (
     <section className="mt-4">
       <h1 className="text-center font-serif font-semibold text-3xl mb-4 px-4 sm:px-0">Browse your favorite shops</h1>
@@ -17,7 +23,7 @@ export default function Shops({ }) {
         {shops.map(shop => (
           <Card
             key={shop.name}
-            onClick={() => navigate(`/${shop.category}`)}
+            onClick={() => navigateToShopsProducts(shop)}
             btnClick={() => navigate(`/${shop.category}`)}
             image={shop.image}
             title={shop.name}

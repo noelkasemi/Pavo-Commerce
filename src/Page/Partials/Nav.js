@@ -1,14 +1,14 @@
 import {
   Arrow,
   useState,
-  useEffect,
   Tooltip,
   Logo,
   MyListbox,
   Lines,
   Button,
   data,
-  Sidebar
+  Sidebar,
+  Cart
 } from "../Partials/Imports";
 import useResizeEffect from "../../Tools/ResizeEffect";
 import { Link } from "react-router-dom";
@@ -114,7 +114,7 @@ export default function Nav() {
               onClick={() => navigate(`/${btn.label}`)}
             />
           ))}
-
+          <Cart style={`cursor-pointer`} />
           <MyListbox
             selectedValue={selected}
             setSelectedValue={setSelected}

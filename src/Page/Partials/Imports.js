@@ -52,7 +52,7 @@ import Money from '../../assets/Svg/money'
 import Restart from '../../assets/Svg/Restart'
 import Star from '../../assets/Svg/star'
 import CreditCard from '../../assets/Svg/CreditCard'
-import Cart from '../../assets/Svg/Cart'
+import CartPlus from '../../assets/Svg/Cart+'
 import Heart from '../../assets/Svg/Heart'
 import ZARA from '../../assets/Images/ZARA.jpg'
 import tiffany from '../../assets/Images/tiffany-co.jpg'
@@ -62,6 +62,7 @@ import { shopData } from "../../Data/ShopData";
 import {data} from '../../Data/Data'
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
+import Cart from "../../assets/Svg/Cart";
 
  
 export {
@@ -123,7 +124,7 @@ export {
   Restart,
   Star,
   CreditCard,
-  Cart,
+  CartPlus,
   Heart,
   ZARA,
   tiffany,
@@ -132,5 +133,6 @@ export {
   shopData,
   data,
   Sidebar,
-  useNavigate
+  useNavigate,
+  Cart
 };

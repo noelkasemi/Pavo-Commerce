@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Heart from "../assets/Svg/Heart";
 import Button from "./Button";
 
@@ -16,8 +17,8 @@ export default function ({
   btnClick,
   title,
   image,
-  navigateTo
 }) {
+  const navigate = useNavigate()
   return (
     <article
       className={`${cardStyle} bg-white relative w-full p-4 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]`}
@@ -43,7 +44,7 @@ export default function ({
           {btnText}
           {btnIcon && <span className={`${btnIconStyle} ml-2`}>{btnIcon}</span>}
         </Button>
-        <Heart navigateTo={navigateTo} style={`cursor-pointer w-9 h-9`} />
+        <Heart navigateTo={() => navigate('/login')} style={`cursor-pointer w-9 h-9`} />
       </article>
     </article>
   );

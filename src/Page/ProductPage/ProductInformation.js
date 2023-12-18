@@ -1,5 +1,13 @@
-import { CreditCard, Star,Cart,Heart,Money,DoubleCards,BlackCard,} from "../Partials/Imports";
-const ProductInformation = ({ product, count, setCount, save, tax, code, navigateTo }) => {
+import { CreditCard, Star, CartPlus,Heart,Money,DoubleCards,BlackCard,} from "../Partials/Imports";
+import { useNavigate } from "../Partials/Imports";
+
+const ProductInformation = ({ product, count, setCount, save, tax, code,}) => {
+  const navigate = useNavigate()
+  const navigateToLogin = () => {
+    navigate('/login')
+    window.scrollTo(0, 0)
+  }
+
   return (
     <article className="space-y-4 lg:ml-5 lg:w-2/4">
       <h2 className="font-bold text-2xl font-serif">{product.title}</h2>
@@ -75,11 +83,11 @@ const ProductInformation = ({ product, count, setCount, save, tax, code, navigat
           Buy now
         </button>
         <button className="w-full flex items-center justify-center bg-white font-semibold hover:brightness-90 border-black border rounded">
-          <Cart style={`w-8 h-8 mr-2`} /> Add to cart
+          <CartPlus style={`w-8 h-8 mr-2`} /> Add to cart
         </button>
         <button className="bg-white rounded hover:outline outline-1 p-4">
           {" "}
-          <Heart navigateTo={navigateTo} />
+          <Heart navigateTo={navigateToLogin} />
         </button>
       </article>
     </article>

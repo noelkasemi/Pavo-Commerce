@@ -10,11 +10,12 @@ import Tabs from "../../Tools/Tab";
 import useResizeEffect from "../../Tools/ResizeEffect";
 import { useLocation, useParams } from "react-router-dom";
 
-const ProductDetails = ({ navigateTo }) => {
-  const location = useLocation()
-  console.log('Location State:', location.state);
-  const {product} = location.state || {}
+const ProductDetails = ({ }) => {
 
+  const location = useLocation();
+  const { productId } = useParams();
+  const { product } = location.state || {};
+  
   const tabs = {
     Description: product.description,
     Details: <Table />,
@@ -88,9 +89,6 @@ const ProductDetails = ({ navigateTo }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo(0, 0)
-  }
 
   return (
     <main className=" bg-[#f7f7f7] space-y-16 flex flex-col w-full items-center justify-center pt-20">
@@ -122,7 +120,6 @@ const ProductDetails = ({ navigateTo }) => {
           save={save}
           tax={tax}
           code={code}
-          navigateTo={navigateTo}
         />
       </section>
       {/* Description */}
@@ -135,8 +132,6 @@ const ProductDetails = ({ navigateTo }) => {
           Similar products
         </p>
         <ProductGrid
-          
-          navigateTo={navigateTo}
           style={` pt-0 `}
           showSeeMore={true}
           initialDisplayCount={10}

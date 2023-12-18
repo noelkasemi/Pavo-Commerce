@@ -1,9 +1,13 @@
 // App.js
 import React from "react";
-import NavigationRoutes from "./Routes/Routes";
+import NavigationRoutes from "./Routes/NavigationRoutes";
 
 function App() {
-  return <NavigationRoutes />;
+  return (
+    <div className="App">
+      <NavigationRoutes />
+    </div>
+  );
 }
 
 export default App;
