@@ -1,0 +1,17 @@
+// CartPage.js
+import React from 'react';
+import Products from './Products';
+import Price from './Price';
+import useResizeEffect from '../../Tools/ResizeEffect';
+
+const CartPage = () => {
+  const isMobile = useResizeEffect()
+  return (
+    <section className={`min-h-screen ${isMobile ? 'flex flex-col items-center' : 'flex'}  w-full space-x-4 xl:px-44 lg:px-14 justify-center bg-[#f3f3f3] px-2`}>  
+      <Products style={`md:w-2/3 w-full md:mt-24`} />
+      <Price style={`md:w-1/3 w-full ${isMobile ? 'w-full md:w-2/3 mb-8 mt-4' : 'w-1/3 mt-24'} h-fit`} />
+    </section>
+  );
+};
+
+export default CartPage;

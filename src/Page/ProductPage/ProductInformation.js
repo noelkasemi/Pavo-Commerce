@@ -1,38 +1,57 @@
-import { CreditCard, Star, CartPlus,Heart,Money,DoubleCards,BlackCard,} from "../Partials/Imports";
-import { useNavigate } from "../Partials/Imports";
+import { CreditCard, Star, CartPlus,Heart,Money,DoubleCards,BlackCard, useState, useNavigate } from "../Partials/Imports";
+import { v4 as uuidv4 } from 'uuid';
 
-const ProductInformation = ({ product, count, setCount, save, tax, code,}) => {
+
+const ProductInformation = ({ product, count, setCount, save, tax,}) => {
   const navigate = useNavigate()
   const navigateToLogin = () => {
     navigate('/login')
     window.scrollTo(0, 0)
   }
 
+   // State to track cart status
+   const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+   // Function to handle adding to cart
+   const addToCartHandler = (product) => {
+     // Create a new object with a unique UUID for the product ID
+     const productToAdd = {
+       ...product,
+       id: uuidv4(),
+     };
+     // Add the product to local storage
+     const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+     const updatedCart = [...cartProducts, productToAdd];
+     localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
+     // For now, let's just update the state to simulate the product being added
+     setIsAddedToCart(true);
+   };
+
   return (
     <article className="space-y-4 lg:ml-5 lg:w-2/4">
       <h2 className="font-bold text-2xl font-serif">{product.title}</h2>
       <article className="flex space-x-4">
-        <li>Warranty: 1 year</li> <li>Code: {code}</li>{" "}
+        <li>Warranty: 1 year</li> <li>Code: {product.id}</li>{" "}
       </article>
 
       <article className="flex flex-col ">
         <p className="line-through text-medium text-slate-500">
           ${product.price}
         </p>
-        <p className="flex items-center font-semibold text-3xl">
+        <article className="flex items-center font-semibold text-3xl">
           ${((product.price / 100) * 50).toFixed(0)}
           <p className="text-sm ml-4 text-slate-600">
             Including tax
             <p>Without tax {(save - tax).toFixed()}$</p>
           </p>
-        </p>
-        <p className="text-[#e65228] flex">
+        </article>
+        <article className="text-[#e65228] flex">
           You save {save.toFixed()}${" "}
           <p className=" rounded-lg ml-1 font-semibold px-1 bg-[#fcede9]">
             {" "}
             -50%
           </p>{" "}
-        </p>
+        </article>
       </article>
       <article className="flex items-center space-x-2 border-2 w-full rounded py-2 px-2">
         <CreditCard style={`w-14 h-fit`} />
@@ -79,10 +98,10 @@ const ProductInformation = ({ product, count, setCount, save, tax, code,}) => {
         </p>
       </article>
       <article className="flex space-x-4 sm:px-8 h-12">
-        <button className="w-full bg-[#e65228] hover:brightness-90 text-white  font-semibold rounded">
+        <button onClick={() => navigate('/checkout')} className="w-full bg-[#e65228] hover:brightness-90 text-white  font-semibold rounded">
           Buy now
         </button>
-        <button className="w-full flex items-center justify-center bg-white font-semibold hover:brightness-90 border-black border rounded">
+        <button  onClick={() => addToCartHandler(product)} className="w-full flex items-center justify-center bg-white font-semibold hover:brightness-90 border-black border rounded">
           <CartPlus style={`w-8 h-8 mr-2`} /> Add to cart
         </button>
         <button className="bg-white rounded hover:outline outline-1 p-4">
