@@ -36,7 +36,8 @@ const ProductGrid = ({
 
   // Function to navigate to ProductDetails with the selected product
   const navigateToProductDetails = (product) => {
-    navigate(`/product/${product.id}`, { state: { product } });
+    const escapedValue = encodeURIComponent(product.title).replace(/%20/g, '-');
+    navigate(`/products/${escapedValue}`, { state: { product } });
   };
 
   // Function to open the modal with a selected product

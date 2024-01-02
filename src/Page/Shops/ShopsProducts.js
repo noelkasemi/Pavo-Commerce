@@ -8,7 +8,7 @@ const ShopsProducts = () => {
   const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
-  const { shopCategory } = useParams();
+  const { shopCategory, shopName } = useParams();
 
   // State to track cart status
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -31,7 +31,9 @@ const ShopsProducts = () => {
 
   // Function to navigate to ProductDetails with the selected product
   const navigateToProductDetails = (product) => {
-    navigate(`/product/${product.id}`, { state: { product } });
+    const escapedShopName = encodeURIComponent(shopName).replace(/%20/g, '-');
+    const escapedValue = encodeURIComponent(product.title).replace(/%20/g, '-');
+    navigate(`/shops/${escapedShopName}/products/${escapedValue}`, { state: { product } });
     window.scrollTo(0, 0);
   };
  

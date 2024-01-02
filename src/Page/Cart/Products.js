@@ -1,13 +1,45 @@
+import React, { useEffect, useState } from 'react';
 import ProductCard from "./ProductCard";
 import { TrashIcon } from "../Partials/Imports";
 
-export default function Products({ style }) {
-  // Get the cart products from local storage
-  const storedCartItems =
-    JSON.parse(localStorage.getItem("cartProducts")) || [];
-    const clearCart = () => {
-        localStorage.removeItem("cartProducts");
-    }
+export default function Products({ style, onTotalPricesChange }) {
+  // Get the cart products from local storage and stores them
+  const [storedCartItems, setStoredCartItems] = useState([]);
+
+  //Stores the items inside the state
+  useEffect(() => {
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    setStoredCartItems(cartProducts);
+  }, []); // Empty dependency array ensures it only runs once on mount
+
+  //function to empty the cart/local storage
+  const clearCart = () => {
+    localStorage.removeItem("cartProducts");
+  };
+
+  //Function to remove a product
+  const handleProductRemove = (productId) => {
+    //Gets the current items inside the local storage
+    const currentCartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    //Filters out the selected one
+    const updatedCartItems = currentCartItems.filter((item) => item.id !== productId);
+    //Removes the selected one
+    localStorage.setItem("cartProducts", JSON.stringify(updatedCartItems));
+    //Updates the state of the cart items
+    setStoredCartItems(updatedCartItems)
+  }
+
+  //Calculates the total prices for the items in the cart
+  useEffect(() => {
+    const totalPrices = storedCartItems.map(product => {
+      const quantity = parseInt(localStorage.getItem(`product_${product.id}_quantity`), 10) || 1;
+      const priceAfterDiscount = ((product.price / 100) * 50).toFixed(1);
+      return (priceAfterDiscount * quantity);
+    });
+
+    onTotalPricesChange(totalPrices);
+  }, [storedCartItems, onTotalPricesChange]);
+
   return (
     <section className={`${style} h-fit bg-white rounded shadow py-4 divide-y md:mb-8`}>
       <article className="hidden md:flex w-full px-4 font-semibold text-lg py-2 ">
@@ -19,7 +51,7 @@ export default function Products({ style }) {
       </article>
       {storedCartItems.length > 0 ? (
         storedCartItems.map((product, i) => (
-          <ProductCard key={`${product.id}_${i}`} product={product} />
+          <ProductCard onProductRemove={handleProductRemove} key={`${product.id}_${i}`} product={product} />
         ))
       ) : (
         <p className="text-slate-300 font-semibold text-center pt-4">No products in the cart</p>

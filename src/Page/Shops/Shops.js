@@ -11,10 +11,11 @@ export default function Shops({ }) {
   const navigate = useNavigate()
 
 
-    // Function to navigate to ProductDetails with the selected product
-    const navigateToShopsProducts = (shop) => {
-      navigate(`/shop/${shop.category}`, { state: { shop } });
-    };
+  const navigateToShopsProducts = (shop) => {
+    const escapedValue = encodeURIComponent(shop.category);
+    navigate(`/shops/${shop.name}/${escapedValue}`, { state: { shop } });
+  };
+  
    
   return (
     <section className="mt-4">

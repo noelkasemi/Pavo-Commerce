@@ -13,18 +13,19 @@ import CartPage from "../Page/Cart/CartPage";
 import CheckoutForm from "../Tools/Form/Checkout";
 
 const routes = [
-  { path: "/", element: <Index />, breadcrumb: "Home" },
-  { path: "/signup", element: <Form type="signup" />, breadcrumb: "Sign Up" },
-  { path: "/login", element: <Form type="login" />, breadcrumb: "Login" },
-  { path: "/privacy", element: <Privacy />, breadcrumb: "Privacy" },
-  { path: "/terms", element: <Terms />, breadcrumb: "Terms" },
-  { path: "/articles", element: <Articles />, breadcrumb: "Articles" },
-  { path: "/shops", element: <Shops />, breadcrumb: "Shops" },
-  { path: "/shop/:shopCategory", element: <ShopsProducts />, breadcrumb: "Shop Category" },
-  { path: "/products", element: <ProductGrid />, breadcrumb: "Products" },
-  { path: "/product/:productId", element: <ProductDetails />, breadcrumb: "Product Details" },
-  {path: '/cart' , element: <CartPage />, breadcrumb: 'Cart'},
-  {path: '/checkout' , element: <CheckoutForm />, breadcrumb: 'Checkout'}
+  { path: "/home", element: <Index /> },
+  { path: "/signup", element: <Form type="signup" /> },
+  { path: "/login", element: <Form type="login" />},
+  { path: "/privacy", element: <Privacy />},
+  { path: "/terms", element: <Terms /> },
+  { path: "/articles", element: <Articles /> },
+  { path: "/shops", element: <Shops /> },
+  { path: "/shops/:shopName/:shopCategory", element: <ShopsProducts />},
+  { path: "/shops/:shopName/products/:productId", element: <ProductDetails /> },
+  { path: "/products", element: <ProductGrid /> },
+  { path: "/products/:productId", element: <ProductDetails /> },
+  {path: '/cart' , element: <CartPage />},
+  {path: '/checkout' , element: <CheckoutForm />}
 ];
 
 export default routes;

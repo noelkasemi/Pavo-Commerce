@@ -41,7 +41,7 @@ export default function Nav() {
     <nav>
       <section className=" w-full py-4 sm:px-4 lg:px-8 flex flex-wrap items-center  ">
         <Link
-          to="/"
+          to="/home"
           className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline cursor-pointer"
         >
           <img src={Logo} alt="alternative" className="h-8" />
@@ -92,8 +92,7 @@ export default function Nav() {
                   onClick={() =>
                     item.label === "Drop"
                       ? null
-                      : item.label === "home"
-                      ? navigate("/")
+                      
                       : navigate(`/${item.label}`)
                   }
                 >

@@ -1,23 +1,13 @@
 import { Button, useEffect, useState, useNavigate } from "../Partials/Imports";
 
-export default function Price({ style }) {
+export default function Price({ style, totalPrices }) {
   const currentCartItems =
     JSON.parse(localStorage.getItem("cartProducts")) || [];
   const navigate = useNavigate();
 
-  // Calculate subtotal by summing up individual total prices for each product
-const subtotal = currentCartItems.reduce((accumulator, product) => {
-    // Retrieve quantity from local storage
-    const productQuantity = parseInt(
-      localStorage.getItem(`product_${product.id}_quantity`)
-    );
+ // Calculate subtotal by summing up total prices for each product
+ const subtotal = totalPrices.reduce((accumulator, totalPrice) => accumulator + totalPrice, 0);
 
-    // Check if productQuantity is a valid number
-    if (!isNaN(productQuantity)) {
-      return accumulator + (product.price * productQuantity) / 100 * 50;
-    }
-    return accumulator;
-  }, 0);
 
   const transportCost = currentCartItems.length === 0 ? 0 : 5;
   const tax = currentCartItems.length === 0 ? 0 : subtotal >= 100 ? 30 : 5;

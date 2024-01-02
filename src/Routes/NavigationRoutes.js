@@ -12,8 +12,7 @@ const NavigationRoutes = () => {
     <Router>
       <section>
         <Header />
-       <BreadCrumb />
-        {/* ... */}
+        <BreadCrumb />
         <Routes>
           {routes.map((route, index) => (
             <Route key={index} {...route} />
