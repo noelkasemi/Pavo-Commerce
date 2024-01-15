@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.js": "/static/js/main.d46aa4c6.js",
+    "static/media/Razer-Symbol.jpg": "/static/media/Razer-Symbol.a804c85239ad2d7829a9.jpg",
+    "static/media/article-details-large.jpg": "/static/media/article-details-large.16f5ac787356e3cf2838.jpg",
+    "static/media/ZARA.jpg": "/static/media/ZARA.c7e525c4e36f2df0c2de.jpg",
+    "static/media/article-details-small.jpg": "/static/media/article-details-small.23745d7d812d229f5d55.jpg",
+    "static/media/conclusion-smartphone.png": "/static/media/conclusion-smartphone.4e2f66b9a229207116a2.png",
+    "static/media/tiffany-co.jpg": "/static/media/tiffany-co.0f1d3391dba87f21897d.jpg",
+    "static/media/header-smartphone.png": "/static/media/header-smartphone.456cee900bdaeae85243.png",
+    "static/media/details-3.jpg": "/static/media/details-3.977045ba2d6eb275cf6a.jpg",
+    "static/media/details-1.jpg": "/static/media/details-1.7eb0695c10d9cd755f9f.jpg",
+    "static/media/details-lightbox.jpg": "/static/media/details-lightbox.f619edc714fb720043bc.jpg",
+    "static/media/details-2.jpg": "/static/media/details-2.e822ade7511325789c76.jpg",
+    "static/media/albania.png": "/static/media/albania.bba3e99e8d978fd7dc7d.png",
+    "static/media/web-183281700.jpg": "/static/media/web-183281700.6032fc9753cb2f587db6.jpg",
+    "static/media/conclusion-background.jpg": "/static/media/conclusion-background.8b193341b5eaa4c704a1.jpg",
+    "static/media/usa.png": "/static/media/usa.157c36d1fbca16e0643d.png",
+    "static/media/logo.svg": "/static/media/logo.8cd1a895cfbd4216585971e27f8eb472.svg",
+    "index.html": "/index.html",
+    "main.d46aa4c6.js.map": "/static/js/main.d46aa4c6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d46aa4c6.js"
+  ]
+}
